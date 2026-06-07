@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1d3557">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ورقة المهام">
+    <script>
+      // Inline PWA Manifest
+      const _manifestData = {
+        "name": "ورقة المهام - الحماية المدنية ميلة",
+        "short_name": "ورقة المهام",
+        "description": "تطبيق ورقة المهام اليومية للحماية المدنية - وحدة ميلة",
+        "start_url": "./",
+        "display": "standalone",
+        "orientation": "landscape",
+        "background_color": "#1d3557",
+        "theme_color": "#1d3557",
+        "lang": "ar",
+        "dir": "rtl",
+        "icons": [{"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAACTklEQVR4nO2cPVLDMBBG7QxHoKKnCjPUoUnOwQE5R2iSmpmkoqfiCMyESsFxZH+SvN+uHPaVELzS8+oXRW1jxHa1POV8frM/tqyyjKEWNFcIQksYNYi0lCGYsigP1hLThyFK9IFWYvpIihJ5UC1i+kiIWkx9QK1ymkambMWGaxYTozSbijJobnKaprzM2YLmKCdQUvYsQXOWE8itQ7IgLTnr3YEeI6cuSR2XhpyYmPeXJ2rMlI4bfoAtJyVjmKKQpNFfsuSUNiOWqDFJd5SIA0ztX8Lfs5tel0FzktnD7HilZA1lUfSHUnI0RqSAhKiYJPEmpiklFle6+V0ZK80eKzFDlIrqZ9Hk1fytcyHoFpYSU+k7UB3mY6CmYN10zxnk2fNH14X3QQAXBFg0jTevGMGJZxDABQFcEKBlL0zZWxPsuJ5BABcEcEEAFwRwQQAXBHBBAPp+ENrPmc1+kBNHTJDmP/MQkmURzaAaJEmXYWF1gn0ObPbHVrwPsswiRmxKJ20hiRWTNoppSmLGOvc/jH1prTkMQ1Dom6nzII0sYsegTxSZFdB4AWdBzOGeURGtc4tqSw3JCmkOABeCfNJofD5I4s1rz7GuBLGzaEoFLQ6Wm5wPChVNnSdZLl9UjgGnYPFVhC5Zx4ADFqc+1ruDesaMdSvV7SjWsKfUZVTQfxj2UR1hBt2yJJGvQwW2q+Xp9dv8UKwIb/c/yS8+KzseHp9v4qje1+dHcr2r66RrwwUBXBDABQFcEMCvxwH4BUsAv6IL4Je8AczWWXO5JvAX6yHtPqS9xoMAAAAASUVORK5CYII=", "sizes": "72x72", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAADH0lEQVR4nO2d23HbMBBF1xyX4C6UBuSfuA4XmDqUn6SBpIuUkBnlwwOFpvgAQOzeC+qeX8sSeA8WD3IEPVkHXM6na83/vf38/dS6La2ha2Bt2LmwSaFojHfoSzDIgDUAFfoSKBnhH8oW/JRoEWEfxh78lCgR7h/SW/BTvEW4vXnvwU/xEjF4vOnRwjfzu6bmAo4YfsLj2pqV1ZGDn6PVkNSkAh4tfLN217xbwCOGn2hx7bsEPHL4ib0ZVAtQ+P/Zk0WVAKbwv/74hW6CmdVnUjyTs4Q/F/z31y+AlnymdHVU9GKG8HN6PFpEiYTsFyLDrx1mkCJyJTx7N2QPe8f39P/oilgjy1J07/eaWKNF5FTB5gsiw49c0UTJ2JKw+seo8JFLyQgRaxKgcwDDGh49Tyya8er9DKGv4SViqQrCKoA9+ER0Rcxaadn7ewl+iZYi5qrA5ZGkyOdOAMPthqMyl60qAMynSZi99+eOx8zzzuV8uo7nAlUAGAkAcxPAPvwciXHWqgAwEgBmMNPwgyBlrgoAIwFgJAAMxUP51rd+S94PvWseNAHjuJxPVw1BYCQAjASAkQAwEgBGAsBIABgJAEOxE87djR7hmfAUVQAYCQDjLoD52ylbRLRdFQBmiDgZqscqiPriRlgF9CQhsq2hQ1APEqLbqDkATLgA5ipAtG0wiz8rk1EC6jvEt+ARz4ZZbhkgOkQSoDkAzE0A4uxkhqEI2fvNCCoAKYGhA8AFmGGCYAjfbCIAeZ5+ZCBM5whRVEAiIhiWnp+4E8DwqxJHpYtvynv2ULbeb7YgAF0FHkGhw1/KlK4CEi0DQ4e/BsWJWVv0eGriGNoTs3IZB9nDuaElUB3aVwLryblTdh3al2CVYPYhgjF4s0bHViaYJTCSu5KkXQU9CtkC0HuDnijJqqgCJGEb1+PrE2k+eP/TxSo2hG8vf6s6aNUcoEq4pzaT6klYEtqgVRAYCQAjAWAkAIwEgJEAMPpJ8w26/UnzKb2JiNrnhG+m2EVEbzBhu1k2EaidPcXtBJQMhtsp8AZM8ZbBEPoYqsYsUSuFLew5/gFRbzkbdiSe7gAAAABJRU5ErkJggg==", "sizes": "96x96", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAEWElEQVR4nO2dzXHUQBCF21uEQBYmAbjgOAiQOOACCeAsCIEqc6DGJQtJO//93vT7zrvlVr9vekartf1gi/Pt4+NLy/uffj4/9KoFkWUurjXoUlYRg/YiZgd+D1YhqIpGC/0MJhkoCmUJfg+DCLAFsoZ+BqoMcEWtFvweNBFgilk9+D0oIrgXES34Pd4i3Dx/ePTwzfx74GKf90Wj4jENpk8AhX+OR2+mGafgy5g1DaZMAIVfzqyeDRdA4dczo3fDxoyC78uoLWHIBFD4/RnV0+4CKPxxjOhtVwEU/nh697ibAAp/Hj173UUA5vA///jlXUIVvXrefLJkDf8o+O+fPjhU0kbr3UHTmxnDz1nxbCK0SPCuZyHIlIz69Fo2EWqoNodl9ffY4xlEqJ0CVW9iCH/E4Q5dhBoJit+AHv6MUz2yCKUSLHMGmHk7t9IZocgWtNWPdA+PJEPJFMh+IVL4SMHvQREhVwKqLQA5+ATb9pBliffqZwj+DE8RcqbA3Rd4hs8c/B4vEe5JALkFrBR8AnVruLRj9upfMfgzZopwNQUgJkCk4BMoE+H0+wDeBz/Rj6ssXX83UPhzKIBW/3qcZaoJEByIQ+Boag9aEQ6n/00Ajf91OcpWW0Bw3gig1b8++4w1AYIjAYLzKoDGfxy2WWsCBEcCBEcCBOdmpv0/IilzTYDgSIDg0D0MmvkNmggPkTQBgiMBgnPTHUBcvn18fNEECI4ECI4ECI4ECI4ECI4ECI4ECI4ECI4ECI4ECA7d08CaJ20RnurVogkQHAkQHAkQHAgBvP9OjhcI133z/v/1wo+nn88PEBPADGM1zATlemEEMMNpymiQrhNKADEfOAGQVscI0K4PTgAzvCb1AvG6bmbj/jW5wCVlDjkBzDBXSwuo1wMrgBlu00pBvg66p4E1RHiqV8vrBEA9ByCvnhwQ699mDb0FJBCbmAND3RQCiHG8EQB1GzDjWE1bUOvdZ0w1AVCbuoelTrMDAZCngBl+c5HrO8qWagIkUJuMWtcVlAKY4TUbrZ5cDgVA3wYSKE1HqeOKs0xpJ0DCu/neP7+VUwFYpoCZXwgs4V9lST8BErPDYAn/HpcCME0Bs3mhMIV/L8NlJkBidDhM4eeQtcJZ/5Zgz8fAjMHnTPDsEc8qgVmbCIzBm+Vv3yG+ELINMUcG1tBrKDrkMU+BPUcirBJ8yeG9+JS/kgRm/0RYJXiz8ju35e4CSlkp/BqKBWD7bCASNdlUTQBJgEdtJtVbgCTAoSWL8GeA6DQJoCngT2sGXQLc3hp++R3isyVXvr7/Y2Z9FmCXLUCTYD69et7tDCAJ5tGz110PgZKAD90FBEcCBEcCBEcCBEcCBEcCBEcCBEcCBMf9g5vVvmJWiveHZ+4CJKKJ4B18AqKILauLgBJ8AqqYLauJgBZ8ArKoPawyoIa+Bb7ALSwiMASfoCl0D5oMTKFvoSz6iNlCsAa+Z4mLuKJVjFWCPuMvPNyTvsVTRtcAAAAASUVORK5CYII=", "sizes": "128x128", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK4AAAFA0lEQVR4nO2dPXIUMRCF21scgYicyFQRmwTOwQE5h0lwTBWOyIk4AlUmoGRmx/MntTR6r/W+yIF33VJ/8yTtjndvbHDu726fPI//9PB4U6sWRoYYvFeSUkaQK+QAewmzR0ShwgwIVZo1oshEPQg2adZglomy8CjizGEUiabgqNKswSITfJGjiTMHXSTY4kYXZw6qSHBFSZxt0ES69C5giuTZB22OIGxGmxQWENKoewJJnnIQ5q6bwQiDj0SvNOqSQJKnPr3m9HSBJE87esztabEncc7lrCXtlASSPOdz1pw3F0jy9OOMuW8qkOTpT+seNBNI8uDQshdNBJI8eLTqSXWBosnz8duP3iVUo0Vvqh71IsmzJM7XD+86VFKfmkf8ak8URZ4jiRNBpFoSVXmSCPKULFXsItWQyP0E7PLU2OMwi+SV6FWtQtiouTlOz8UsUiku+xjT54xTFZtInhQqfiCbPD2O40wilUpU9CAmeRBex2ERqUSikHsgBGmmRN4jZRuHnD5o4qyBLFJuCmX9Mqo8LOLMQRUpRyLqJYxVnESEpe2waUjpwy7OGkgiHU2hQ7+EIk9UceagiHREIoolbBRxEkxL265hPdNnNHHW6CnSXgpBJpDEuQY5kTbvSETZ+4h+7DnQ/cMVBDerAil9RGLLBSWQcCGBhIvFU9hIy5f3ZDPKifH+7vZp6UivBBIuXgg0UvqIPJbcUAIJFxJIuLgSSMuX2GPuiBJIuJBAwsWzQFq+xFGmriiBhAsJJFxIIOHiYqb9j8gnOaMEEi4kkHABeVN9Lj1vNvf87Qi3giiBhAsJJFxIIOHioiO8KOX+7vZJCSRcSCDhQgIJFxJIuJBAwoUEEi4kkHAhgYQLCSRcSCDhIsTtHJ7bIvTpHD6UQMKFBBIuJJBwASkQ4uch9wZ1Ti41v4RejMWnh8cbyAQyw73ieoA8F7ACmWFP3FmgzwG0QAIfeIHQr8CWMIwdXiAzjomsDcuYKQQSuFzMyr5w/mxYrsgaMIw1OaMEEi6oBGK4Mr2wjZFKIDO+Cc6BcWxXex+Wf3OOeg8Oi0DTPTNdApnxTHQOrGOiFMiMd8KXYB7LlUAMx3nRl7kjtAlkxn3lJtjHQC2QGXcDmGtPvBCIcRljbARjzaG/M5WpIUy17rEoEGMKmXE0hqHGJdacCJNACeQGIddWSjiBzDAbhVhTDVYFYl3GEkgNQ6qlhC0XQiZQAqFxCDW0ZFMg9hQy4/0eDRT2HAidQIkejYwgzxF2BYqQQmbnNjSKPEd6H+LzgY6SGtvqfqIo4uRwOF1YbjbLoZZIEcU5uvJkLU8RJUqUyBRRHLO8bctQS9gWOctbVHFKyN4gR06hKUsijSBO7qGp6IQ1ikRm/0QaQRyzshP3EK8DeRhFnlKKBIry2pD4T2lPixNIEsXB00vXEiaJ+PH2UHsg4cItkFKIlxq9q5JAkoiPWj2r2vjp60Off+tFbiS+vP7z/HPNC77qHkhJhE/tHlXfREsiXFr0plmz37x9P8zbHQz8+vm9Sa91jBcuJJBwIYGECwkkXEgg4UICCRcSSLiQQMKFBBIuoN52GOlmfQ9IbxdBJRDSxKCCNkdQxUxRGl2DJk4Csqgpo4uEKk4Curgpo4mELk6Cosg5UWVikWYKXcFToojEKE6CtvA5bDIxSzMlxCDmoMoURZop4Qa0RC+hIgozJ/wA9/DKNYIkW/wFCcrLwsiuhZYAAAAASUVORK5CYII=", "sizes": "144x144", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAYAAAAYwiAhAAAFO0lEQVR4nO3dMY7UTBCG4doRRyAiJwKJGBI4BwfkHJBAjAQRORFHQIIAeeUx9kzb3eWur/p9oj/4d9R2v1v2eGeXB8Ojj69f/GnxOu++fH9o8ToZDHkiWoW014jhDXHAvYK6Z4TgUh5g1KDuyRhcmgNSjWpLltjkDyJbWEvqoUkuPntUWxRjk1rwqGEtKYUmsVDCWqcQWugFElaZyKFdei9gC3GVi3yuwpUf+WQpiDbNwiyGsNqKElqISyRxtRflnHYPLMqJyCjCue02RiMc/Eh6XTK7TDDiOl+vc356YMTVT49zf9rYJKxYzrpknjLBiCues/bEPTDiiuuMvXENjLji894jt8CIS4fnXrkEljmut5+/9V6CC689a/5OImtca2F9evOyw0p8tX532fTFMsZVMrGyhdYysmYvlC2uI5fCTKG1iuxJixfJpOYea/raTKHValJphunlcfOuHlqLKVb9AupxnfGuUDm02siqvlg5rh6PG1RDq4lsuHuwns+xRrxHO1ym2vSK+IBUKbSjU+zQF6nEFTGqNSqhHYls9xcoxKUS1pJCaHsjS3UPphrWJOM92q4ao04v9bC2RA1tzxSTnmBZw5pkmGjFJUaaXtnD2hIptNIpVvQ/RYlr1LCWooRWEpnEJZKwrildOu8W2HN6EVaZnqHdm2Ld/zYFcrsZWJR7L8R1rxEmGFxtBsb0QqlbrTDB4EriMcWZat+R8c732uoE4/KIvbaa4RIJV/8FxvTCUWvtMMHgisDg6iowLo+otWyICQZXBAZXBAZXj4Fx/4VW5i0xweCKwOCKwODqYsb9F9qbmmKCwVW6z4P1/lUuPk92jQkGVwQGVwQGVxfeQcLLx9cv/jDB4IrA4IrA4IrA4IrA4IrA4IrA4IrA4IrA4IrA4IrA4Crd58FqP0/F57naYoLBFYHBFYHBFYHBVejAev8Ch4Lo5+hy9B/7Bu559+X7Q+gJZhb/O7QnhXMTPjAzjRN5NpVzIhGYmc4JPYPSuZAJDJqkAlP6zvWidg4uZuX/wHcEaie4JaVjn5qSmmDQIxmY0ndyK6rHLBmYme4JP0L5WB8DU7oPQ2zzlq6iUvxDKNk/4Kc4veaByV4iJ4obUCrDsckHZpZjI5ayHNNVYNyHodayoRQTzCzPd7xZrmNJE5hZjo3JcAxz/wWmfplU3iDltZutt5Nqgk0UN0pxzSVWA1OfYmZaG6a01i1bzaScYBOFjVNYY43UgZnF3sDIa2tlM7AMl0mc41Yr6SeYWcxJEXFNHm4GlmmKRdrQSGupda+RISbYJMLGRljDme4GlmmKmfXd4GxxlbQx1ASb9NjobHGVKp5Oih9GLOH9gcWsYZVe2XZd/rJGNmkZW9awzPbdNqX7G601piiOhpY5qqN238Bnn2JzpaGNFNbeN31MsBvm4azFNlJYRx16BDHSFFt6+/nbsGEdeWR1+BnXyJGN6Ojz0MPPwbI9gMW2mr0e8kErzlMVGFMsv9o9rp5gRJZXi71tcokksnxa7Sn3YHDVLDCmWB4t97J5FPPnY+9/8YMCBR+e/n7879aDovklkkmmy2PvXO7BiEyP1565hvDs+St+nCTg54+vbh3wLhKuCAyuCAyuCAyuCAyuCAyuCAyuCAyuCAyuCAyuwv7MkN9a2ifqz3/DTrCoJyyiyOcq7MLmmGbrIoc1Cb/AOUL7RyGsicxC50YNTSmsidyCl7LHphjVnPTi57KFph7WJMVBLKnGliWquXQHtCZqcBmDWkp/gGt6BTdCUEvDHfAtrcIbMaQtfwG559uF2QGaPQAAAABJRU5ErkJggg==", "sizes": "152x152", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,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", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}, {"src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAN7ElEQVR4nO3dzZUbxxUG0CIPQ3AWVALUhorDAToOakMmQGbhEHwOvZAhY4YYoAF0V72fe7fW0bS6qr+vXgMzfjeggC+fPv6c+fP++Pbj3cyfB0ewiQltdrDvTVEQmc3JctlD/lHKgdVsQKbqGvZbKQVmstk4jLDfh1LgKDYWuxD2cykF9mAT8TChH4My4FE2DpsJ/BwUAlvZKFwl9HNTBlxjc/CCwK9NIXDOZkDoN6UMsAEaE/yMoQg6s/DNCH2uUQa9WOwGhD6PUAb1WeDCBD97UAR1WdiCBD9HUAT1WNAihD4zKYMaLGJygp+VFEFuFi8pwU8kiiAni5aM4CcyRZCLxUpC8JOJIsjBIgUn+MlMEcRmcYIS/FSiCGKyKMEIfipTBLFYjCAEP50oghjer74AhD/92PMxaOGFPARgGljJjV9A8MOvFMF8bvhEgh9uUwTz+AxgEuEP23hW5tG0B7OZ4XGmgWOZAA4k/OE5nqFjadcD2LSwP9PA/kwAOxP+cAzP1v406k5sTpjHNLAPE8AOhD/M5ZnbhwJ4ko0Ia3j2nmeMepDNB3F4JfQYE8ADhD/E4pl8jAK4k40GMXk272ds2sjmgjy8EtrGBLCB8IdcPLPbKIAbbCTIybN7mzHpDTYP1OGV0GUmgAuEP9Timb5MAbxio0BNnu1fKYAzNgjU5hl/SQH8j40BPXjW/08BDBsCuvHM/6V9AdgI0JNnv/HXQC0+cNL1a6ItJwDhD5zrmgntCqDrQgPXdcyGVgXQcYGB7bplRJsC6LawwGM6ZUWLAui0oMDzumRG+QLospDAvjpkR+kC6LCAwHGqZ0jZAqi+cMAclbOkZAFUXjBgvqqZUq4Aqi4Ux/j89fvqSyCJitlS6tefKy4Qx7gU/H/+/tuCKyGbSn82osx/iPBniy0nfkXALVVK4MPqC4AZ7nnVc/pnFQHVlWgxp3/essc7fkXAJRWmgPT/AcKfS474cFcR8Fr2Ekh98cKf12Z8q0cRcC5zCaS9cOHPuRVf51QEnGQtgZQXLfwZI9Z3+JUBGUsg3QULfyIF/2uKoLdsJZDqYoV/b5GD/zVF0FemEvB7AISXKfhP/C4BGaRpKqf/fjIG/1sUQS9ZpoAUFyn8e6kU/K8pgj4ylED4CxT+fVQO/tcUQQ/RS8BnACzXKfhPfEZABKHbyem/to7B/xZFUFfkKSDshQn/ugT/2xRBTVFLIORFCf+aBP92iqCeiCXgMwAOJ/jv5zMCZgjXSE7/dQj+/SiCGqJNAaEuRvjXIPiPowjyi1QCYS5E+Ocn+OdRBLlFKQGfAfAUob/G+X1XBjwqRAs5/ecj+ONRBLlEmAKWX4Dwz0Xwx6cI8lhdAl4BsYngz8NXSNlqafs4/ccn+PNTBLGtnAKW/WDhH5vgr0cRxLWqBLwC4gXBX5dXQ7y2pHWc/uMR/P0oglhWTAHTf6Dwj0XwowjimF0CXgE1Jfg58Wqor6lt4/S/nuDnFkWw1swpwATQhOBnKxNBH9Oaxul/DcHPsxTBfLOmABNAUYKfvZgI6prSMk7/8wh+jqYI5pgxBRz+A4T/8YQ+qyiDYx1dAl4BJSb4Wc3rodwObRen/2MIfqJSBPs7cgowASQi+InORJDLYc3i9L8fwU9WimAfR00BJoDABD/ZmQhiO6RVnP6fI/ipShE87ogpwAQQiOCnOhNBLO/3/hc6/QPs74hs3b0AAMhh1wJw+gc4zt4ZawIAaGq3AnD6BzjenllrAgBoapcCcPoHmGevzDUBADT1dAE4/QPMt0f2mgAAmlIAAE09VQBe/wCs82wGmwAAmnq4AJz+AdZ7Jov9OWhSif5nhP1JbzJ5aAJw+geI49FM9hkAQFMKAKCpuwvA6x+AeB7JZhMAQFMKAKCpuwrA6x+AuO7NaBMAQFObC8DpHyC+e7LaBADQlAIAaGpTAXj9A5DH1sw2AQA0pQAAmlIAAE3dLADv/wHy2ZLdJgCAphQAQFNXC8DrH4C8bmW4CQCgKQUA0JQCAGjqzQLw/h8gv2tZbgIAaEoBADR1sQC8/gGo461MNwEANKUAAJpSAABNKQCApn4pAB8AA9RzKdtNAABNKQCAphQAQFMKAKCpFwXgA2CAul5nvAkAoCkFANCUAgBo6sPqCyCWP3//bfUlpJbh/n3++n31JRDE3xOAD4AB6jvPeq+AAJpSAABNKQCAphQAQFMKAKApBQDQ1PsxfAUUoJNT5psAAJpSAABNKQCAphQAQFMKAKApBQDQlAIAaEoBADSlAACaeu+3gAH6+fLp408TAEBTCgCgKQUA0JQCAGhKAQA0pQAAmlIAAE0pAICmFABAUwoAoCkFANCUAgBoSgEANKUAAJpSAABNKQCAphQAQFMKAKApBQDQlAIAaEoBADT1YfUFEMvnr99XX8JVf/7+2+pLuCr6/YNzJgCAphQAQFMKAKApBQDQlAIAaOr9H99+vFt9EQDM9ce3H+9MAABNKQCAphQAQFMKAKApBRBI9D9zAHuwz+NQAABNKYBgnI6ozP6ORQEE5CGhIvs6HgUA0NT7Mf76jbDVF8JLTktUYj/Hcsp8E0BgHhoqsI/jUgAATSmA4JyeyMz+jU0BJOAhIiP7Nj4FANCUAkjCaYpM7Ncc/i4AXwWNz0NFBvZpbOdZbwIAaEoBJON0RWT2Zy4KICEPGRHZl/koAICmXhSAD4LzcNoiEvsxh9cZbwJIzENHBPZhXgoAoCkFkJzTFyvZf7kpgAI8hKxg3+X3SwH4IBignkvZbgIowmmMmey3GhRAIR5KZrDP6lAAAE0pgGKczjiS/VXLxQLwQXBuHlKOYF/l9VammwAAmlIARTmtsSf7qaarr3q+fPr4c9aFcIzPX7+vvgSSE/65XXulbwIAaEoBFOf0xjPsn9oUQAMeYh5h39R3tQB8HRQgr1sZbgJowmmOe9gvPSiARjzUbGGf9HGzALwGAshnS3abAJpxuuMa+6MXBdCQh5xL7It+FABAU5sKwOcA9Tjtcc5+qGVrZpsAGvPQM4Z90JkCAGhqcwF4DVST019v1r+ee7LaBIAQaMq6c1cBmALqEga9WO+a7s1oEwB/Ewo9WGdOFAAvCIfarC/n7i4Ar4HqExI1WdfaHslmEwAXCYtarCeXKADeJDRqsI685aEC8BqoD+GRm/Xr4dFMNgFwkxDJybpxy8MFYAroRZjkYr36eCaLTQBsJlRysE5s9VQBmAL6ES6xWZ9ens1gEwB3EzIxWRfupQB4iLCJxXrwiKcLwGugvoRODNahpz2y1wTAU4TPWu4/z9ilAEwBvQmhNdz3vvbKXBMAuxBGc7nf7GG3AjAFIJTmcJ972zNrTQDsSjgdy/1lT7sWgCmAMYTUUdxX9s5YEwCHEFb7cj85wu4FYArgRGjtw31kjGOy1QTAoYTXc9w/jnRIAZgCOCfEHuO+cXJUppoAmEKY3cf9YobDCsAUwGtCbRv3iXNHZqkJgKmE23XuDzMdWgCmAC4Rcpe5L7x2dIaaAFhC2L3kfrDClBP6l08ff874OeT0+ev31ZewjODnLTPeoEx7RaMEuKVTEQh+rpn1+vzDjB8CW5yHYsUyEPpEM/VDWlMA96pQBIKfe8z88owJgNBO4ZmxCAQ/0U3/mqYpgGdkKALBz6Nmf3XeBEAqkScCwU82S35RyxTAnlaWgdBnLyt+cXbZb+oqAfY2swgEP3ta9VcTvAKijBmvhwQ/lSz9Wz2mAI60ZxEIfo6y8m+mLf9jbUqAoz1TBIKfI63+g5leAVHevb9hLPTpYvkEMIYpgPkuFYHgZ6bVp/8xghTAGEqANT5//S74mS5C+I/h/w+A5oQ/nYUpgCiNCHCkSFkXpgDGiHVjAPYWLeNCFcAY8W4QwB4iZlu4AgBgjpAFELEpAR4VNdNCFsAYcW8YwD0iZ1nYAhgj9o0DuCV6hoUuAACOE74AojcowCUZsit8AYyR40YCnGTJrBQFMEaeGwr0limr0hQAAPtKVQCZmhXoJ1tGpSqAMfLdYKCHjNmUrgDGyHmjgbqyZlLKAhgj7w0HasmcRWkLYIzcNx7IL3sGpS6AMfIvAJBThexJXwBj1FgIII8qmVOiAAC4X4kWO/ny6ePPW//MP//9YcalAEn96x//ufq/Vzn9j1FsAqi0MEA81TKmVAGMUW+BgBgqZku5Ahij5kIB61TNlJIFMEbdBQPmqpwlZQtgjNoLBxyveoaULoAx6i8gcIwO2VG+AMbosZDAfrpkRosCGKPPggLP6ZQVbQpgjF4LC3BLqwIA4P8UAEBTCgCgKQUA0JQCAGhKAQA0pQAAmlIAAE0pAICmFABAUwoAoCkFANCUAgBoSgEANKUAAJpSAABNKQCAphQAQFMKAKApBQDQlAIAaEoBADSlAACaerf6Ajr58unjz9XXANH98e2HXJrEjV5AEcCvBP98bvhCigAE/0pufACKgI4E/3o+BA7Ag0A39nwMFiEY0wCVCf5YLEZQioBKBH9MFiU4RUBmgj82i5OEIiATwZ+DRUpGERCZ4M/FYiWlCIhE8Odk0ZJTBKwk+HOzeEUoAmYS/DVYxIKUAUcQ+vVY0MIUAXsQ/HVZ2AYUAY8Q/PVZ4GaUAdcI/V4sdmPKgDGEfmcWHkXQlODHBuAFZVCb0OeczcBVCiE3gc81NgebKYMchD5b2Sg8TCHEIPB5lI3DLpTBXEKfPdhEHEYp7EPYcxQbi6mUwnXCnplsNpbrWgrCntVsQELLXg5CnshsTkqYXRSCnQr+C1LcmTHe4UELAAAAAElFTkSuQmCC", "sizes": "384x384", "type": "image/png", "purpose": "any"}, {"src": "data:image/png;base64,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", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
+      };
+      const _blob = new Blob([JSON.stringify(_manifestData)], {type:'application/manifest+json'});
+      const _manifestURL = URL.createObjectURL(_blob);
+      const _ml = document.createElement('link');
+      _ml.rel = 'manifest'; _ml.href = _manifestURL;
+      document.head.appendChild(_ml);
+    </script>
+    <link rel="apple-touch-icon" href="data:image/png;base64,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">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق ورقة المهام الرسمية - الحماية المدنية ميلة</title>
+    <style>
+        body {
+            font-family: 'Arial', Tahoma, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 5px;
+            color: #000;
+        }
+        .container {
+            max-width: 100%;
+            background: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        /* لوحة التحكم بالهاتف للأسماء */
+        .phone-setup {
+            background: #fff3f3;
+            border: 2px dashed #e63946;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .rank-setup-box {
+            margin-top: 10px;
+            background: #f0f7f4;
+            padding: 8px;
+            border: 1px solid #2b9348;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .btn {
+            background: #1d3557;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .btn-save { background: #e63946; }
+        .btn-print { background: #2b9348; margin-top: 10px; }
+
+        /* الهيكل العلوي للورقة الرسمية */
+        .header-table {
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .header-table td {
+            vertical-align: top;
+            padding: 2px;
+        }
+        .title-sec {
+            text-align: center;
+        }
+        .title-sec h2 {
+            margin: 5px 0;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        
+        /* الحاوية العلوية للجداول */
+        .top-left-counters {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* تنسيق الجداول الجانبية المتناظرة */
+        .side-counter-box {
+            border-collapse: collapse;
+        }
+        .side-counter-box td {
+            border: 1px solid #000;
+            height: 22px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .side-counter-box input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            background: transparent;
+        }
+        .table-title-cell {
+            font-size: 10px;
+            font-weight: bold;
+            background-color: #f8f9fa;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            padding: 2px 4px;
+            border: 1px solid #000;
+        }
+
+        /* مربعات المسؤولين والمداومة */
+        .officers-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.3fr;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+        .officer-item {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .officer-item label {
+            white-space: nowrap;
+            margin-left: 5px;
+        }
+
+        /* تنسيق مشترك للصناديق الخاصة */
+        .special-box {
+            background-color: #f8f9fa;
+            border: 1px solid #000;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .box-title {
+            text-align: center;
+            font-size: 11.5px;
+            border-bottom: 1px solid #000;
+            margin-bottom: 5px;
+            padding-bottom: 2px;
+            color: #1d3557;
+            font-weight: bold;
+        }
+        .crew-split-box {
+            display: flex;
+            flex-direction: column;
+            border: 1px dashed #000;
+            background: #fff;
+            margin-top: 2px;
+        }
+        .crew-split-box select {
+            border-bottom: 1px dashed #ccc !important;
+            height: 22px;
+        }
+        .crew-split-box select:last-child {
+            border-bottom: none !important;
+        }
+
+        /* الهندسة الدقيقة للجدول الرئيسي */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        table.main-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10.5px;
+            text-align: center;
+        }
+        table.main-table th, table.main-table td {
+            border: 1px solid #000;
+            padding: 2px;
+            box-sizing: border-box;
+            height: 45px;
+        }
+        th {
+            background-color: #ffffff;
+            font-weight: bold;
+        }
+        .time-cell {
+            background-color: #ffffff;
+            font-weight: bold;
+            width: 50px;
+        }
+        .task-cell {
+            font-weight: bold;
+            background-color: #ffffff;
+            width: 60px;
+        }
+        
+        /* شطبات هندسية مائلة للمهام الفرعية */
+        .diagonal-line {
+            background: linear-gradient(to top left, #fff 49.5%, #000 49.5%, #000 50.5%, #fff 50.5%);
+        }
+        /* خانات مغلقة ومظللة أسفل الجدول */
+        .closed-cell {
+            background-color: #f0f0f0;
+        }
+
+        /* قوائم الاختيار المنسدلة */
+        select {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 10.5px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+        }
+        select:focus {
+            background: #fffde6;
+            outline: none;
+        }
+        
+        /* تقسيم الحراسة داخلياً */
+        .guard-split {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-around;
+        }
+        .guard-split select {
+            height: 50%;
+            border-bottom: 1px dashed #000;
+        }
+        .guard-split select:last-child {
+            border-bottom: none;
+        }
+
+        /* تقسيم الخانات لعدة أعوان داخل الجدول الرئيسي */
+        .crew-split {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-around;
+        }
+        .crew-split select {
+            height: 33%;
+            border-bottom: 1px dashed #ccc;
+        }
+        .crew-split select:last-child {
+            border-bottom: none;
+        }
+
+        /* خانة مخصصة لخلية الـ Moto والسائق المكلّف */
+        .moto-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            font-weight: bold;
+            background-color: #e8f5e9;
+        }
+
+        /* تمييز مظهر الإسعاف الطبية */
+        .medical-column {
+            background-color: #f0f7ff !important;
+        }
+
+        /* المظهر السفلي المتطور للإجازات والعطل (10 خانات لكل عطل) */
+        .footer-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+        .leaves-text {
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 2.2;
+            text-align: right;
+        }
+        .leave-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .leave-label {
+            width: 130px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .leave-select-container {
+            display: inline-flex;
+            border: 1px dashed #000;
+            background: #fff;
+            flex-grow: 1;
+        }
+        .leave-select-container select {
+            border-left: 1px dashed #ccc !important;
+            height: 22px;
+            font-size: 10px;
+            width: 10%; /* توزيع متساوٍ لـ 10 خانات */
+        }
+        .leave-select-container select:last-child {
+            border-left: none !important;
+        }
+
+
+        /* ===== لوحة الفصيلة ===== */
+        .fasila-panel {
+            background: #f0f4ff;
+            border: 2px solid #1d3557;
+            border-radius: 6px;
+            padding: 0;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .fasila-panel-header {
+            background: #1d3557;
+            color: #fff;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .fasila-panel-body { padding: 10px; display: none; }
+        .fasila-panel-body.open { display: block; }
+        .fasila-group { margin-bottom: 10px; }
+        .fasila-group-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #1d3557;
+            border-bottom: 1px solid #aac;
+            padding-bottom: 3px;
+            margin-bottom: 5px;
+        }
+        .fasila-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+        .chip {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 8px; border-radius: 12px;
+            font-size: 11px; font-weight: bold; color: #fff;
+        }
+        .chip-sgt    { background: #1d3557; }
+        .chip-cpl    { background: #457b9d; }
+        .chip-drv    { background: #e76f51; }
+        .chip-agent  { background: #6c757d; }
+        .chip-fixed  { background: #c0392b; }
+        .chip-mtc    { background: #2a9d8f; }
+        .chip-doc    { background: #8e44ad; }
+        .chip-note   { background: #f4a261; color: #333; font-size: 10px; }
+        .fasila-note {
+            font-size: 11px; color: #555; background: #fff8e1;
+            border-right: 3px solid #f4a261;
+            padding: 4px 8px; border-radius: 3px; margin-top: 4px;
+        }
+        /* زر تعديل القائمة */
+        .btn-edit-names {
+            background: #457b9d; font-size: 12px;
+            padding: 5px 10px; margin: 0;
+            width: auto; border-radius: 4px;
+        }
+
+
+
+
+
+        /* ===== select أصلي محسّن — يعمل في Chrome مباشرة ===== */
+        select.name-select {
+            display: block !important;
+            width: 100%;
+            min-width: 52px;
+            max-width: 100%;
+            padding: 2px 1px;
+            font-size: 10px;
+            font-family: inherit;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            background: #fff;
+            color: #111;
+            cursor: pointer;
+            -webkit-appearance: menulist;
+            appearance: menulist;
+            touch-action: manipulation;
+            height: 22px;
+            box-sizing: border-box;
+        }
+        select.name-select:focus {
+            outline: 2px solid #1d3557;
+            border-color: #1d3557;
+        }
+        select.name-select.repeated-warning {
+            background: #ffe0b2 !important;
+            color: #c75000 !important;
+        }
+        /* حارس المديرية */
+        #directorateGuardSelect {
+            display: inline-block !important;
+            min-width: 110px;
+            font-size: 12px;
+            height: 26px;
+        }
+
+        /* ===== نظام التناوب الذكي ===== */
+
+        .suggestion-panel {
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            border-radius: 6px;
+            padding: 0;
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: none;
+        }
+        .suggestion-panel-header {
+            background: #2e7d32;
+            color: #fff;
+            padding: 7px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .suggestion-body { padding: 8px 10px; }
+        .sugg-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            border-bottom: 1px dashed #a5d6a7;
+            flex-wrap: wrap;
+        }
+        .sugg-row:last-child { border-bottom: none; }
+        .sugg-role {
+            background: #1d3557;
+            color: #fff;
+            border-radius: 10px;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            min-width: 90px;
+            text-align: center;
+        }
+        .sugg-name {
+            color: #1b5e20;
+            font-weight: bold;
+            font-size: 12px;
+            flex: 1;
+        }
+        .sugg-last {
+            color: #888;
+            font-size: 11px;
+            font-style: italic;
+        }
+        .rotation-warning-panel {
+            background: #fff3e0;
+            border: 2px solid #e65100;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .rotation-warning-panel h4 {
+            margin: 0 0 5px 0;
+            color: #e65100;
+            font-size: 13px;
+        }
+        .rotation-warn-item {
+            font-size: 12px;
+            padding: 3px 0;
+            border-bottom: 1px dashed #ffb74d;
+            color: #4a2800;
+        }
+        .rotation-warn-item:last-child { border-bottom: none; }
+
+        /* ===== نظام الأرشيف والتنبيه ===== */
+        .archive-panel {
+            background: #f0f4ff;
+            border: 2px solid #1d3557;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .archive-panel h3 {
+            margin: 0 0 8px 0;
+            color: #1d3557;
+            font-size: 14px;
+            text-align: center;
+        }
+        .archive-controls {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .archive-controls input[type="text"] {
+            flex: 1;
+            min-width: 60px;
+            padding: 6px;
+            font-size: 13px;
+            border: 1px solid #1d3557;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .btn-archive { background: #1d3557; font-size: 13px; padding: 7px; margin-top: 0; width: auto; flex: 1; }
+        .btn-load    { background: #457b9d; font-size: 13px; padding: 7px; margin-top: 0; width: auto; flex: 1; }
+        .btn-del-arc { background: #888;    font-size: 12px; padding: 7px; margin-top: 0; width: auto; }
+        .archive-list {
+            max-height: 160px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .archive-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            gap: 6px;
+        }
+        .archive-item:last-child { border-bottom: none; }
+        .archive-item:hover { background: #e8f0fe; }
+        .archive-item.selected { background: #d0e8ff; }
+        .arc-date { color: #1d3557; }
+        .arc-fasila { color: #e63946; min-width: 55px; }
+        .arc-del {
+            background: none; border: none; color: #aaa;
+            font-size: 15px; cursor: pointer; padding: 0 3px;
+            line-height: 1;
+        }
+        .arc-del:hover { color: #e63946; }
+        .warning-panel {
+            background: #fff8e1;
+            border: 2px solid #f4a261;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+            display: none;
+        }
+        .warning-panel h4 {
+            margin: 0 0 5px 0;
+            color: #c75000;
+            font-size: 13px;
+        }
+        .warning-item {
+            font-size: 12px;
+            color: #7b3f00;
+            padding: 2px 0;
+            border-bottom: 1px dashed #f4a261;
+        }
+        .warning-item:last-child { border-bottom: none; }
+        .warn-group-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #7b3f00;
+            background: #ffe8cc;
+            padding: 3px 6px;
+            margin: 4px 0 2px 0;
+            border-radius: 3px;
+        }
+        .warn-agent {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        select.repeated-warning {
+            background: #ffe0b2 !important;
+            color: #c75000 !important;
+        }
+        @media print {
+            .phone-setup, .archive-panel, .warning-panel,
+            .btn-save, .btn-print { display: none !important; }
+        }
+    
+        /* ===== نظام الاختيار بالضغط (يعمل في Chrome file://) ===== */
+        .sel-btn {
+            display: inline-block;
+            width: 100%;
+            min-width: 48px;
+            padding: 2px 3px;
+            font-size: 10px;
+            font-family: inherit;
+            background: #fff;
+            border: 1px solid #999;
+            border-radius: 3px;
+            text-align: center;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #777;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .sel-btn.has-val {
+            color: #1d3557;
+            font-weight: bold;
+            background: #eef4ff;
+            border-color: #1d3557;
+        }
+        .sel-btn.repeated-warning {
+            background: #ffe0b2 !important;
+            color: #c75000 !important;
+            border-color: #f4a261 !important;
+        }
+        /* نافذة الاختيار */
+        #pickerOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: flex-end;
+            align-items: flex-end;
+        }
+        #pickerBox {
+            background: #fff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 16px 16px 0 0;
+            overflow: hidden;
+            max-height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #pickerHeader {
+            background: #1d3557;
+            color: #fff;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        #pickerClose {
+            background: none; border: none;
+            color: #fff; font-size: 22px;
+            cursor: pointer; line-height: 1;
+            padding: 0 4px;
+        }
+        #pickerItems {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex: 1;
+        }
+        .picker-item {
+            padding: 13px 18px;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            text-align: right;
+            -webkit-tap-highlight-color: rgba(29,53,87,0.1);
+        }
+        .picker-item:active { background: #dce8ff; }
+        .picker-item.selected {
+            background: #eef4ff;
+            color: #1d3557;
+            font-weight: bold;
+        }
+        .picker-item.clear-item {
+            color: #e63946;
+            background: #fff8f8;
+            font-style: italic;
+        }
+        .picker-item.rank-header {
+            background: #f5f5f5;
+            color: #888;
+            font-size: 11px;
+            padding: 6px 18px;
+            cursor: default;
+            font-weight: bold;
+        }
+
+        </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- لوحة التحكم بالهاتف للأسماء -->
+    <div class="phone-setup">
+        <h3 style="margin:0 0 5px 0; color:#e63946; text-align:center; font-size:14px;">⚙️ لوحة تحكم الهاتف الذكية وتصنيف الرتب</h3>
+        <textarea id="namesInput" rows="2" placeholder="اكتب الأسماء هنا وافصل بينهم بفاصلة مثل: محمد، أحمد، بوعلام..."></textarea>
+        
+        <div class="rank-setup-box">
+            💡 <strong>لتفعيل الحساب التلقائي بدقة:</strong> ضع رمزاً بجانب اسم العون في القائمة أعلاه (مثال: للضباط والأطباء الضباط ضع * مثل: <b>طبيب ملازم أول أحمد*</b>، وللرقباء ضع # مثل: <b>رقيب محمد#</b>، وباقي الأسماء بدون رموز تُحسب تلقائياً كأعوان).
+        </div>
+        
+        <button class="btn" onclick="saveNamesList()">💾 تحديث وحفظ قائمة الأسماء</button>
+    </div>
+
+    <!-- ===== نافذة اختيار الأسماء ===== -->
+    <div id="pickerOverlay" onclick="if(event.target===this)closePicker()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:flex-end;flex-direction:column;">
+        <div id="pickerBox">
+            <div id="pickerHeader">
+                <span id="pickerTitle">اختر عوناً</span>
+                <button id="pickerClose" onclick="closePicker()">✕</button>
+            </div>
+            <div id="pickerItems"></div>
+        </div>
+    </div>
+
+    <!-- ===== لوحة اقتراحات التناوب ===== -->
+    <div class="suggestion-panel" id="suggestionPanel">
+        <div class="suggestion-panel-header">
+            <span>🔄 اقتراحات التناوب — الأولى بالدور هذه المناوبة</span>
+            <span style="font-size:11px;opacity:.8">بناءً على الأرشيف</span>
+        </div>
+        <div class="suggestion-body" id="suggestionBody"></div>
+    </div>
+
+    <!-- ===== تنبيه تخطي الدور ===== -->
+    <div class="rotation-warning-panel" id="rotationWarningPanel">
+        <h4>⚖️ تنبيه عدالة التناوب</h4>
+        <div id="rotationWarningList"></div>
+    </div>
+
+    <!-- ===== لوحة معلومات الفصيلة ===== -->
+    <div class="fasila-panel">
+        <div class="fasila-panel-header" onclick="toggleFasilaPanel()">
+            <span>👥 تشكيلة الفصيلة — الوحدة الرئيسية ميلة</span>
+            <span id="fasila-arrow">▼</span>
+        </div>
+        <div class="fasila-panel-body" id="fasilaBody">
+
+            <!-- المناصب الثابتة -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🏛️ المناصب الثابتة</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-fixed">ضابط المداومة — يعين من المديرية (متغير)</span>
+                    <span class="chip chip-fixed">قائد الفصيلة: بوعبدالله يوسف</span>
+                    <span class="chip chip-fixed">عون الحجز: بوالرماد</span>
+                    <span class="chip chip-fixed">حارس المديرية: بوالزرايب (شبيه)</span>
+                </div>
+                <div class="fasila-note">
+                    ⚠️ عند غياب قائد الفصيلة يستبدل بـ: المساعد الأول حراتي نصر الدين → جزار توفيق → مجبار عيسى → عفاقي عبد الهادي → بن عامر
+                </div>
+            </div>
+
+            <!-- م.ت.ع -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">📡 مركز التنسيق العملي (م.ت.ع) — فرقة معزولة</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-mtc">الرقيب بوالشعر ياسين — قائد م.ت.ع</span>
+                    <span class="chip chip-mtc">بوراوي حمزة #</span>
+                    <span class="chip chip-mtc">معافي داود #</span>
+                </div>
+                <div class="fasila-note">ملاحظة: الرقيب بوالشعر ياسين لا يستبدل قائد الفصيلة — مسؤول م.ت.ع فقط</div>
+            </div>
+
+            <!-- الرقيب اليومي -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🎖️ الرقيب اليومي (بالتناوب) — أيضاً رؤساء عدد شاحنات التدخل</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-sgt">حراتي نصر الدين *</span>
+                    <span class="chip chip-sgt">جزار توفيق *</span>
+                    <span class="chip chip-sgt">مجبار عيسى *</span>
+                    <span class="chip chip-sgt">عفاقي عبد الهادي *</span>
+                    <span class="chip chip-sgt">بن عامر *</span>
+                </div>
+            </div>
+
+            <!-- رؤساء عدد سيارات الإسعاف -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🚑 رؤساء عدد سيارات الإسعاف + عريف الدورية (بالتناوب)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-cpl">قادري عبد الحق #</span>
+                    <span class="chip chip-cpl">بوويدين خالد #</span>
+                    <span class="chip chip-cpl">مشقف شراف الدين #</span>
+                    <span class="chip chip-cpl">شلي تقي الدين #</span>
+                    <span class="chip chip-cpl">زويد العيد #</span>
+                </div>
+                <div class="fasila-note">
+                    المركبات: AMB01/74598 — AMB02/23255 — AMB03/54443 — AMB04/22413 — AMB MED/40748
+                </div>
+            </div>
+
+            <!-- عريف الدورية إضافي -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">⭐ باقي العرفاء (عريف دورية + تناوب)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-cpl">بوالصبعيين #</span>
+                    <span class="chip chip-cpl">بن السعيد الصالح #</span>
+                    <span class="chip chip-cpl">حمودة رياض #</span>
+                    <span class="chip chip-cpl">بودرقة شوقي #</span>
+                    <span class="chip chip-cpl">فلاحي هشام #</span>
+                    <span class="chip chip-cpl">مجراب معاد #</span>
+                    <span class="chip chip-cpl">شنينبة عصام #</span>
+                    <span class="chip chip-cpl">شتوان جعفر #</span>
+                    <span class="chip chip-cpl">بوالعراق احسن #</span>
+                    <span class="chip chip-cpl">بوكرك عادل #</span>
+                    <span class="chip chip-cpl">بوالرماد #</span>
+                </div>
+            </div>
+
+            <!-- سائقو الإسعاف -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🚑 سائقو سيارات الإسعاف</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-drv">بن السعيد الصالح #</span>
+                    <span class="chip chip-drv">حمودة رياض #</span>
+                    <span class="chip chip-drv">بودرقة شوقي #</span>
+                    <span class="chip chip-drv">فلاحي هشام #</span>
+                </div>
+            </div>
+
+            <!-- سائقو الشاحنات -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🚒 سائقو الشاحنات (FPTL, CCFM, CCI...)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-drv">مجراب معاد #</span>
+                    <span class="chip chip-drv">شنينبة عصام #</span>
+                    <span class="chip chip-drv">شتوان جعفر #</span>
+                    <span class="chip chip-drv">بوالعراق احسن #</span>
+                    <span class="chip chip-drv">بوكرك عادل #</span>
+                </div>
+            </div>
+
+            <!-- الأعوان الميدانيون -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">👷 الأعوان الميدانيون (فرقة، حراسة، ثكنة، نادي، مطعم...)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-agent">حرتي كريم</span>
+                    <span class="chip chip-agent">بوقزولة السعيد</span>
+                    <span class="chip chip-agent">كاسح بدر الدين</span>
+                    <span class="chip chip-agent">بوشايلة وسيم</span>
+                    <span class="chip chip-agent">نقاش عماد الدين</span>
+                    <span class="chip chip-agent">غوالة بشير</span>
+                    <span class="chip chip-agent">بيدة هارون</span>
+                </div>
+                <div class="fasila-note">
+                    المطبخ: صباح → بنداس الياس | مساء → بوالعراس محمد &nbsp;|&nbsp; مسؤول النادي: بن الشيهب بدر الدين
+                </div>
+            </div>
+
+            <!-- الأطباء -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🩺 الأطباء الضباط (AMB MED فقط)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-doc">قنيش عبد الغاني</span>
+                    <span class="chip chip-doc">بخوش سمير</span>
+                    <span class="chip chip-doc">عبد الغاني</span>
+                    <span class="chip chip-doc">رضا</span>
+                </div>
+            </div>
+
+            <!-- الفرق المعزولة -->
+            <div class="fasila-group">
+                <div class="fasila-group-title">🔒 فرق معزولة (إدخال يدوي فقط)</div>
+                <div class="fasila-chips">
+                    <span class="chip chip-note">GRIMP/25333 — فرقة التعرف بالأماكن الوعرة</span>
+                    <span class="chip chip-note">TOYEXEP — فرقة الكلاب المدربة (تعداد خاص)</span>
+                </div>
+            </div>
+
+            <!-- زر تعديل القائمة -->
+            <div style="text-align:center; margin-top:8px;">
+                <button class="btn btn-edit-names" onclick="resetAndReloadNames()">🔄 إعادة تحميل الأسماء من قاعدة البيانات</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== لوحة الأرشيف ===== -->
+    <div class="archive-panel">
+        <h3>🗂️ أرشيف ورقات المهام — نظام العدالة بين الفصائل</h3>
+
+        <!-- تنبيهات التكرار -->
+        <div class="warning-panel" id="warningPanel">
+            <h4>⚠️ تنبيه التكرار — مقارنة مع آخر مناوبة لنفس الفصيلة</h4>
+            <div id="warningList"></div>
+        </div>
+
+        <!-- أدوات الأرشيف -->
+        <div class="archive-controls">
+            <button class="btn btn-archive" onclick="saveToArchive()">💾 حفظ في الأرشيف</button>
+            <button class="btn btn-load"    onclick="loadFromArchive()">📂 تحميل المحدد</button>
+            <button class="btn btn-del-arc" onclick="deleteSelectedArchive()">🗑️</button>
+        </div>
+        <div class="archive-list" id="archiveList">
+            <div style="text-align:center; color:#999; padding:10px; font-size:12px;">لا توجد سجلات في الأرشيف بعد</div>
+        </div>
+    </div>
+
+    <!-- بداية هيكل ورقة المهام الرسمية -->
+    <div id="officialSheet">
+        
+        <table class="header-table">
+            <tr>
+                <td style="width: 25%; text-align: right;">
+                    مديرية الحماية المدنية – ميلة<br>
+                    الوحدة الرئيسيــــــــة – ميلة<br>
+                    رقم : <input type="text" id="doc_num" placeholder="........" style="width:60px; border:none; border-bottom:1px solid #000; text-align:center; font-weight:bold; font-size:12px; background:transparent;"> /و.ر.ج.م.م/ 2026
+                </td>
+                <td style="width: 35%; text-align: center;" class="title-sec">
+                    الجمهورية الجزائرية الديمقراطية الشعبية<br>
+                    الفصيلة رقم: <input type="text" style="width:40px; border:none; border-bottom:1px solid #000; text-align:center; font-weight:bold;" id="f_num" onchange="checkRepetitions()"><br>
+                    <h2>ورقة المهام اليومية : <span id="current_date">2026/  /  </span></h2>
+                </td>
+                
+                <!-- قسم العدادات في أعلى اليسار -->
+                <td style="width: 40%; text-align: left;">
+                    <div class="top-left-counters">
+                        
+                        <!-- 1. جدول مداومة بالمديرية (يدوي بالكامل) -->
+                        <table class="side-counter-box">
+                            <tr>
+                                <td style="width: 35px;"><input type="text" id="manual_officers" placeholder="..."></td>
+                                <td style="font-size: 11px; font-weight: bold; width: 45px;">الضباط</td>
+                                <td rowspan="3" class="table-title-cell">مداومة بالمديرية</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="manual_sergeants" placeholder="..."></td>
+                                <td style="font-size: 11px; font-weight: bold;">الرقباء</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="manual_agents" placeholder="..."></td>
+                                <td style="font-size: 11px; font-weight: bold;">الأعوان</td>
+                            </tr>
+                        </table>
+
+                        <!-- 2. جدول الحساب التلقائي المعتاد للفصيلة العاملة -->
+                        <table class="side-counter-box">
+                            <tr>
+                                <td style="width: 35px;"><input type="text" id="count_officers" value="0" readonly></td>
+                                <td style="font-size: 11px; font-weight: bold; width: 45px;">الضباط</td>
+                                <td rowspan="3" class="table-title-cell" style="background-color: #eef1f6;">حساب الفصيلة</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="count_sergeants" value="0" readonly></td>
+                                <td style="font-size: 11px; font-weight: bold;">الرقباء</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="count_agents" value="0" readonly></td>
+                                <td style="font-size: 11px; font-weight: bold;">الأعوان</td>
+                            </tr>
+                        </table>
+                        
+                        <div style="text-align: right; font-size: 12px; font-weight: bold; line-height: 1.4; white-space: nowrap; align-self: center;">وحدة مديرية</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- خانات المسؤولين القيادية الثابتة -->
+        <div class="officers-section">
+            <div>
+                <div class="officer-item"><label>ضابط المداومة:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="width:105px; border-bottom:1px solid #000;" id="hid_hukgk" value=""><div class="sel-btn" id="btn_hukgk" onclick="openPicker('hid_hukgk','btn_hukgk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>قائد الفصيلة:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="width:105px; border-bottom:1px solid #000;" id="hid_grskv" value=""><div class="sel-btn" id="btn_grskv" onclick="openPicker('hid_grskv','btn_grskv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>الرقيب اليومي:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="width:105px; border-bottom:1px solid #000;" id="hid_penub" value=""><div class="sel-btn" id="btn_penub" onclick="openPicker('hid_penub','btn_penub')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>عريف الدورية:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="width:105px; border-bottom:1px solid #000;" id="hid_muhga" value=""><div class="sel-btn" id="btn_muhga" onclick="openPicker('hid_muhga','btn_muhga')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>عون حجز:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="width:115px; border-bottom:1px solid #000;" id="hid_gwrhv" value=""><div class="sel-btn" id="btn_gwrhv" onclick="openPicker('hid_gwrhv','btn_gwrhv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>حارس المديرية:</label> <input type="hidden" id="directorateGuardSelect" onchange="calculateActiveStaff()" value=""><div class="sel-btn" id="btn_dg" onclick="openPicker('directorateGuardSelect','btn_dg')" ontouchstart="" style="min-width:100px;font-size:12px;">بوالزرايب</div></div>
+            </div>
+            
+            <!-- الفرقة السينوتقنية ف.س.ت -->
+            <div class="special-box">
+                <div class="box-title">الفرقة السينوتقنية (ف.س.ت)</div>
+                <div style="margin-bottom: 2px; font-size: 11px; color: #444;">طاقم الفرقة والكلاب المدربة:</div>
+                <div class="crew-split-box">
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_iwdax" value=""><div class="sel-btn" id="btn_iwdax" onclick="openPicker('hid_iwdax','btn_iwdax')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nijtr" value=""><div class="sel-btn" id="btn_nijtr" onclick="openPicker('hid_nijtr','btn_nijtr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jsucr" value=""><div class="sel-btn" id="btn_jsucr" onclick="openPicker('hid_jsucr','btn_jsucr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                </div>
+            </div>
+            
+            <!-- مركز التنسيق العملي م.ت.ع -->
+            <div class="special-box">
+                <div class="box-title">م.ت.ع (مركز التنسيق العملي)</div>
+                <div class="officer-item"><label>ض. المداومة:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="border-bottom:1px dashed #000;" id="hid_ppsyr" value=""><div class="sel-btn" id="btn_ppsyr" onclick="openPicker('hid_ppsyr','btn_ppsyr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                <div class="officer-item"><label>ر. الفرقة:</label> <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="border-bottom:1px dashed #000;" id="hid_oiizs" value=""><div class="sel-btn" id="btn_oiizs" onclick="openPicker('hid_oiizs','btn_oiizs')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                
+                <div style="margin-top:3px;"><label style="font-size:11px; color:#555;">الأعوان العاملين:</label></div>
+                <div class="crew-split-box">
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_owenz" value=""><div class="sel-btn" id="btn_owenz" onclick="openPicker('hid_owenz','btn_owenz')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jplxy" value=""><div class="sel-btn" id="btn_jplxy" onclick="openPicker('hid_jplxy','btn_jplxy')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                    <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_earme" value=""><div class="sel-btn" id="btn_earme" onclick="openPicker('hid_earme','btn_earme')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- الجدول الهيكلي الرئيسي المتكامل -->
+        <div class="table-wrapper">
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th style="width:60px;">المهام</th>
+                        <th>A.M.B 01<br>MASTER<br><small>74598</small></th>
+                        <th>A.M.B 02<br>MASTER<br><small>23255</small></th>
+                        <th>A.M.B 03<br>MASTER<br><small>54443</small></th>
+                        <th>A.M.B 04<br>BOXER<br><small>22413</small></th>
+                        <th class="medical-column" style="color: #03045e;">A.M.B<br>MASTER<br><small>40748/MED</small></th>
+                        <th>A.M.B<br>25333<br><small>GRIMP</small></th>
+                        <th>FPTL</th>
+                        <th>VSR</th>
+                        <th>C.C.F.M</th>
+                        <th>CCI<br>6000</th>
+                        <th>CCI<br>12000</th>
+                        <th>REN<br>DEP</th>
+                        <th style="width:50px;">التوقيت</th>
+                        <th style="width:100px;">الحراسة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- السطر 1: فترة رئيس العدد (08 سا - 10 سا) -->
+                    <tr>
+                        <td class="task-cell">ر.العدد</td>
+                        <td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_batmy" value=""><div class="sel-btn" id="btn_batmy" onclick="openPicker('hid_batmy','btn_batmy')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_utmbh" value=""><div class="sel-btn" id="btn_utmbh" onclick="openPicker('hid_utmbh','btn_utmbh')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pyrxy" value=""><div class="sel-btn" id="btn_pyrxy" onclick="openPicker('hid_pyrxy','btn_pyrxy')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_fpsyo" value=""><div class="sel-btn" id="btn_fpsyo" onclick="openPicker('hid_fpsyo','btn_fpsyo')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td class="medical-column"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nwcph" value=""><div class="sel-btn" id="btn_nwcph" onclick="openPicker('hid_nwcph','btn_nwcph')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_iwlte" value=""><div class="sel-btn" id="btn_iwlte" onclick="openPicker('hid_iwlte','btn_iwlte')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_svdqk" value=""><div class="sel-btn" id="btn_svdqk" onclick="openPicker('hid_svdqk','btn_svdqk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_slced" value=""><div class="sel-btn" id="btn_slced" onclick="openPicker('hid_slced','btn_slced')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_yhstg" value=""><div class="sel-btn" id="btn_yhstg" onclick="openPicker('hid_yhstg','btn_yhstg')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_klixe" value=""><div class="sel-btn" id="btn_klixe" onclick="openPicker('hid_klixe','btn_klixe')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ltvwi" value=""><div class="sel-btn" id="btn_ltvwi" onclick="openPicker('hid_ltvwi','btn_ltvwi')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_haswv" value=""><div class="sel-btn" id="btn_haswv" onclick="openPicker('hid_haswv','btn_haswv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td class="time-cell">08 سا<br>10 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_vhboc" value=""><div class="sel-btn" id="btn_vhboc" onclick="openPicker('hid_vhboc','btn_vhboc')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_rqeky" value=""><div class="sel-btn" id="btn_rqeky" onclick="openPicker('hid_rqeky','btn_rqeky')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+
+                    <!-- السطر 2: فترة الفرقة (10 سا - 12 سا) -->
+                    <tr>
+                        <td class="task-cell">الفرقة</td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nwsla" value=""><div class="sel-btn" id="btn_nwsla" onclick="openPicker('hid_nwsla','btn_nwsla')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jcmwj" value=""><div class="sel-btn" id="btn_jcmwj" onclick="openPicker('hid_jcmwj','btn_jcmwj')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jaolh" value=""><div class="sel-btn" id="btn_jaolh" onclick="openPicker('hid_jaolh','btn_jaolh')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_fbqwl" value=""><div class="sel-btn" id="btn_fbqwl" onclick="openPicker('hid_fbqwl','btn_fbqwl')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nzyoi" value=""><div class="sel-btn" id="btn_nzyoi" onclick="openPicker('hid_nzyoi','btn_nzyoi')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_avoph" value=""><div class="sel-btn" id="btn_avoph" onclick="openPicker('hid_avoph','btn_avoph')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xtbkb" value=""><div class="sel-btn" id="btn_xtbkb" onclick="openPicker('hid_xtbkb','btn_xtbkb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ebjgx" value=""><div class="sel-btn" id="btn_ebjgx" onclick="openPicker('hid_ebjgx','btn_ebjgx')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_paval" value=""><div class="sel-btn" id="btn_paval" onclick="openPicker('hid_paval','btn_paval')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_mifhk" value=""><div class="sel-btn" id="btn_mifhk" onclick="openPicker('hid_mifhk','btn_mifhk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pmuww" value=""><div class="sel-btn" id="btn_pmuww" onclick="openPicker('hid_pmuww','btn_pmuww')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_gubos" value=""><div class="sel-btn" id="btn_gubos" onclick="openPicker('hid_gubos','btn_gubos')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td class="medical-column"><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jkxnu" value=""><div class="sel-btn" id="btn_jkxnu" onclick="openPicker('hid_jkxnu','btn_jkxnu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_rixcq" value=""><div class="sel-btn" id="btn_rixcq" onclick="openPicker('hid_rixcq','btn_rixcq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jpzrs" value=""><div class="sel-btn" id="btn_jpzrs" onclick="openPicker('hid_jpzrs','btn_jpzrs')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pxsze" value=""><div class="sel-btn" id="btn_pxsze" onclick="openPicker('hid_pxsze','btn_pxsze')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_domvq" value=""><div class="sel-btn" id="btn_domvq" onclick="openPicker('hid_domvq','btn_domvq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_zofea" value=""><div class="sel-btn" id="btn_zofea" onclick="openPicker('hid_zofea','btn_zofea')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_oubfv" value=""><div class="sel-btn" id="btn_oubfv" onclick="openPicker('hid_oubfv','btn_oubfv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ixjjo" value=""><div class="sel-btn" id="btn_ixjjo" onclick="openPicker('hid_ixjjo','btn_ixjjo')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_tzhvd" value=""><div class="sel-btn" id="btn_tzhvd" onclick="openPicker('hid_tzhvd','btn_tzhvd')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jlcco" value=""><div class="sel-btn" id="btn_jlcco" onclick="openPicker('hid_jlcco','btn_jlcco')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_fbioa" value=""><div class="sel-btn" id="btn_fbioa" onclick="openPicker('hid_fbioa','btn_fbioa')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_msklf" value=""><div class="sel-btn" id="btn_msklf" onclick="openPicker('hid_msklf','btn_msklf')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_poabx" value=""><div class="sel-btn" id="btn_poabx" onclick="openPicker('hid_poabx','btn_poabx')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_enqcu" value=""><div class="sel-btn" id="btn_enqcu" onclick="openPicker('hid_enqcu','btn_enqcu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_vlfeu" value=""><div class="sel-btn" id="btn_vlfeu" onclick="openPicker('hid_vlfeu','btn_vlfeu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_tyhxp" value=""><div class="sel-btn" id="btn_tyhxp" onclick="openPicker('hid_tyhxp','btn_tyhxp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_qwtnc" value=""><div class="sel-btn" id="btn_qwtnc" onclick="openPicker('hid_qwtnc','btn_qwtnc')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_luvni" value=""><div class="sel-btn" id="btn_luvni" onclick="openPicker('hid_luvni','btn_luvni')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xsbfh" value=""><div class="sel-btn" id="btn_xsbfh" onclick="openPicker('hid_xsbfh','btn_xsbfh')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_yhqbp" value=""><div class="sel-btn" id="btn_yhqbp" onclick="openPicker('hid_yhqbp','btn_yhqbp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jrvmu" value=""><div class="sel-btn" id="btn_jrvmu" onclick="openPicker('hid_jrvmu','btn_jrvmu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nvmxs" value=""><div class="sel-btn" id="btn_nvmxs" onclick="openPicker('hid_nvmxs','btn_nvmxs')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_yjqqx" value=""><div class="sel-btn" id="btn_yjqqx" onclick="openPicker('hid_yjqqx','btn_yjqqx')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_eveqf" value=""><div class="sel-btn" id="btn_eveqf" onclick="openPicker('hid_eveqf','btn_eveqf')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td class="time-cell">10 سا<br>12 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_oydff" value=""><div class="sel-btn" id="btn_oydff" onclick="openPicker('hid_oydff','btn_oydff')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_vnsco" value=""><div class="sel-btn" id="btn_vnsco" onclick="openPicker('hid_vnsco','btn_vnsco')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+
+                    <!-- السطر 3: فترة السائق (12 سا - 14 سا) -->
+                    <tr>
+                        <td class="task-cell">السائق</td>
+                        <td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_imqhn" value=""><div class="sel-btn" id="btn_imqhn" onclick="openPicker('hid_imqhn','btn_imqhn')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_biwuk" value=""><div class="sel-btn" id="btn_biwuk" onclick="openPicker('hid_biwuk','btn_biwuk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_hemwa" value=""><div class="sel-btn" id="btn_hemwa" onclick="openPicker('hid_hemwa','btn_hemwa')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jokbk" value=""><div class="sel-btn" id="btn_jokbk" onclick="openPicker('hid_jokbk','btn_jokbk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td class="medical-column"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_dbofq" value=""><div class="sel-btn" id="btn_dbofq" onclick="openPicker('hid_dbofq','btn_dbofq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ufbiv" value=""><div class="sel-btn" id="btn_ufbiv" onclick="openPicker('hid_ufbiv','btn_ufbiv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_imwli" value=""><div class="sel-btn" id="btn_imwli" onclick="openPicker('hid_imwli','btn_imwli')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_gujmj" value=""><div class="sel-btn" id="btn_gujmj" onclick="openPicker('hid_gujmj','btn_gujmj')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ewhyz" value=""><div class="sel-btn" id="btn_ewhyz" onclick="openPicker('hid_ewhyz','btn_ewhyz')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ndent" value=""><div class="sel-btn" id="btn_ndent" onclick="openPicker('hid_ndent','btn_ndent')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_lnwbn" value=""><div class="sel-btn" id="btn_lnwbn" onclick="openPicker('hid_lnwbn','btn_lnwbn')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td><td><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_zfmuo" value=""><div class="sel-btn" id="btn_zfmuo" onclick="openPicker('hid_zfmuo','btn_zfmuo')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></td>
+                        <td class="time-cell">12 سا<br>14 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_cfplq" value=""><div class="sel-btn" id="btn_cfplq" onclick="openPicker('hid_cfplq','btn_cfplq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xuzwu" value=""><div class="sel-btn" id="btn_xuzwu" onclick="openPicker('hid_xuzwu','btn_xuzwu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+
+                    <!-- السطر 4: العناوين الأفقية للمصالح والخدمات (14 سا - 16 سا) -->
+                    <tr>
+                        <td class="diagonal-line"></td>
+                        <td style="font-weight:bold; background: #fdf0ed;">الثكنة</td>
+                        <td style="font-weight:bold; background: #fdf0ed;">Ktz / المطبخ</td>
+                        <td style="font-weight:bold; background: #fdf0ed;"><small>النادي</small><br>ضباط</td>
+                        <td style="font-weight:bold; background: #fdf0ed;"><small>النادي</small><br>أعوان</td>
+                        <td style="font-weight:bold; background: #fdf0ed;">المطاعم</td>
+                        <td style="font-weight:bold; background: #fdf0ed;">الآليات</td>
+                        <td colspan="2" style="font-weight:bold;">G.E/MP</td>
+                        <td style="font-weight:bold;">ECH</td>
+                        <td style="font-weight:bold;">C.T.M</td>
+                        <td style="font-weight:bold;">SON<br>CTP</td>
+                        <td style="font-weight:bold;">TOY<br>EXEP</td>
+                        <td class="time-cell">14 سا<br>16 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_uxnml" value=""><div class="sel-btn" id="btn_uxnml" onclick="openPicker('hid_uxnml','btn_uxnml')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_whebr" value=""><div class="sel-btn" id="btn_whebr" onclick="openPicker('hid_whebr','btn_whebr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+
+                    <!-- السطر 5: فترة عمل المصالح والخدمات (16 سا - 18 سا) -->
+                    <tr>
+                        <td class="diagonal-line"></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pxtxl" value=""><div class="sel-btn" id="btn_pxtxl" onclick="openPicker('hid_pxtxl','btn_pxtxl')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xjgef" value=""><div class="sel-btn" id="btn_xjgef" onclick="openPicker('hid_xjgef','btn_xjgef')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xmlkb" value=""><div class="sel-btn" id="btn_xmlkb" onclick="openPicker('hid_xmlkb','btn_xmlkb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nvcwa" value=""><div class="sel-btn" id="btn_nvcwa" onclick="openPicker('hid_nvcwa','btn_nvcwa')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_hdlwj" value=""><div class="sel-btn" id="btn_hdlwj" onclick="openPicker('hid_hdlwj','btn_hdlwj')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_rkzci" value=""><div class="sel-btn" id="btn_rkzci" onclick="openPicker('hid_rkzci','btn_rkzci')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_jqdsr" value=""><div class="sel-btn" id="btn_jqdsr" onclick="openPicker('hid_jqdsr','btn_jqdsr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_qtzor" value=""><div class="sel-btn" id="btn_qtzor" onclick="openPicker('hid_qtzor','btn_qtzor')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_amodb" value=""><div class="sel-btn" id="btn_amodb" onclick="openPicker('hid_amodb','btn_amodb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_nxhyw" value=""><div class="sel-btn" id="btn_nxhyw" onclick="openPicker('hid_nxhyw','btn_nxhyw')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_qhhuk" value=""><div class="sel-btn" id="btn_qhhuk" onclick="openPicker('hid_qhhuk','btn_qhhuk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ahuqw" value=""><div class="sel-btn" id="btn_ahuqw" onclick="openPicker('hid_ahuqw','btn_ahuqw')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_fsgnp" value=""><div class="sel-btn" id="btn_fsgnp" onclick="openPicker('hid_fsgnp','btn_fsgnp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_xwynb" value=""><div class="sel-btn" id="btn_xwynb" onclick="openPicker('hid_xwynb','btn_xwynb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_wbfxb" value=""><div class="sel-btn" id="btn_wbfxb" onclick="openPicker('hid_wbfxb','btn_wbfxb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pngnv" value=""><div class="sel-btn" id="btn_pngnv" onclick="openPicker('hid_pngnv','btn_pngnv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_vspsm" value=""><div class="sel-btn" id="btn_vspsm" onclick="openPicker('hid_vspsm','btn_vspsm')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_zhqgj" value=""><div class="sel-btn" id="btn_zhqgj" onclick="openPicker('hid_zhqgj','btn_zhqgj')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td colspan="2"><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_vqvyt" value=""><div class="sel-btn" id="btn_vqvyt" onclick="openPicker('hid_vqvyt','btn_vqvyt')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_omzgz" value=""><div class="sel-btn" id="btn_omzgz" onclick="openPicker('hid_omzgz','btn_omzgz')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_ctdmp" value=""><div class="sel-btn" id="btn_ctdmp" onclick="openPicker('hid_ctdmp','btn_ctdmp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_tqylb" value=""><div class="sel-btn" id="btn_tqylb" onclick="openPicker('hid_tqylb','btn_tqylb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_fuejk" value=""><div class="sel-btn" id="btn_fuejk" onclick="openPicker('hid_fuejk','btn_fuejk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_sblkr" value=""><div class="sel-btn" id="btn_sblkr" onclick="openPicker('hid_sblkr','btn_sblkr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_excbb" value=""><div class="sel-btn" id="btn_excbb" onclick="openPicker('hid_excbb','btn_excbb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_btkqw" value=""><div class="sel-btn" id="btn_btkqw" onclick="openPicker('hid_btkqw','btn_btkqw')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_iqycd" value=""><div class="sel-btn" id="btn_iqycd" onclick="openPicker('hid_iqycd','btn_iqycd')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_lotgt" value=""><div class="sel-btn" id="btn_lotgt" onclick="openPicker('hid_lotgt','btn_lotgt')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_gdtre" value=""><div class="sel-btn" id="btn_gdtre" onclick="openPicker('hid_gdtre','btn_gdtre')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_esaqv" value=""><div class="sel-btn" id="btn_esaqv" onclick="openPicker('hid_esaqv','btn_esaqv')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td><div class="crew-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_rqgjo" value=""><div class="sel-btn" id="btn_rqgjo" onclick="openPicker('hid_rqgjo','btn_rqgjo')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_malis" value=""><div class="sel-btn" id="btn_malis" onclick="openPicker('hid_malis','btn_malis')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_hvlic" value=""><div class="sel-btn" id="btn_hvlic" onclick="openPicker('hid_hvlic','btn_hvlic')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div></td>
+                        <td class="time-cell">16 سا<br>18 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_pxyiz" value=""><div class="sel-btn" id="btn_pxyiz" onclick="openPicker('hid_pxyiz','btn_pxyiz')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_euwbn" value=""><div class="sel-btn" id="btn_euwbn" onclick="openPicker('hid_euwbn','btn_euwbn')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+
+                    <!-- السطر 6 السفلي -->
+                    <tr>
+                        <td class="diagonal-line"></td>
+                        <td class="closed-cell"></td><td class="closed-cell"></td><td class="closed-cell"></td><td class="closed-cell"></td><td class="closed-cell"></td><td class="closed-cell"></td><td colspan="2" class="closed-cell"></td><td class="closed-cell"></td>
+                        
+                        <td>
+                            <div class="moto-box">
+                                <span>MOT</span>
+                                <input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_qncsk" value=""><div class="sel-btn" id="btn_qncsk" onclick="openPicker('hid_qncsk','btn_qncsk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                            </div>
+                        </td>
+                        <td style="font-weight:bold; background:#e8f5e9; padding-top: 12px;">ZOD</td>
+                        
+                        <td class="time-cell">18 سا<br>20 سا</td>
+                        <td>
+                            <div class="guard-split"><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_lrvzw" value=""><div class="sel-btn" id="btn_lrvzw" onclick="openPicker('hid_lrvzw','btn_lrvzw')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="calculateActiveStaff()" style="" id="hid_yrwhk" value=""><div class="sel-btn" id="btn_yrwhk" onclick="openPicker('hid_yrwhk','btn_yrwhk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- الجزء السفلي المطور بالكامل: يتسع لـ 10 أعوان لكل خانة عطل أو إجازة -->
+        <table class="footer-table">
+            <tr>
+                <td style="width: 30%; vertical-align: top; font-weight: bold; font-size: 14px; text-align: center; padding-top: 45px;">
+                    قائد الفصيلة
+                </td>
+                <td style="width: 70%;" class="leaves-text">
+                    <div class="leave-row">
+                        <span class="leave-label">الإجازات التعويضية :</span>
+                        <div class="leave-select-container">
+                            <input type="hidden" class="name-select" onchange="" style="" id="hid_fpgem" value=""><div class="sel-btn" id="btn_fpgem" onclick="openPicker('hid_fpgem','btn_fpgem')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_srjfg" value=""><div class="sel-btn" id="btn_srjfg" onclick="openPicker('hid_srjfg','btn_srjfg')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_atmqm" value=""><div class="sel-btn" id="btn_atmqm" onclick="openPicker('hid_atmqm','btn_atmqm')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_nzjjf" value=""><div class="sel-btn" id="btn_nzjjf" onclick="openPicker('hid_nzjjf','btn_nzjjf')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_twgdp" value=""><div class="sel-btn" id="btn_twgdp" onclick="openPicker('hid_twgdp','btn_twgdp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_zglcp" value=""><div class="sel-btn" id="btn_zglcp" onclick="openPicker('hid_zglcp','btn_zglcp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_rocsx" value=""><div class="sel-btn" id="btn_rocsx" onclick="openPicker('hid_rocsx','btn_rocsx')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_kbsig" value=""><div class="sel-btn" id="btn_kbsig" onclick="openPicker('hid_kbsig','btn_kbsig')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_feuhe" value=""><div class="sel-btn" id="btn_feuhe" onclick="openPicker('hid_feuhe','btn_feuhe')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_kezgs" value=""><div class="sel-btn" id="btn_kezgs" onclick="openPicker('hid_kezgs','btn_kezgs')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                        </div>
+                    </div>
+                    <div class="leave-row">
+                        <span class="leave-label">الإجازات الاستثنائية :</span>
+                        <div class="leave-select-container">
+                            <input type="hidden" class="name-select" onchange="" style="" id="hid_btiej" value=""><div class="sel-btn" id="btn_btiej" onclick="openPicker('hid_btiej','btn_btiej')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_socjg" value=""><div class="sel-btn" id="btn_socjg" onclick="openPicker('hid_socjg','btn_socjg')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_wyano" value=""><div class="sel-btn" id="btn_wyano" onclick="openPicker('hid_wyano','btn_wyano')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_jxrwr" value=""><div class="sel-btn" id="btn_jxrwr" onclick="openPicker('hid_jxrwr','btn_jxrwr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_rpmoq" value=""><div class="sel-btn" id="btn_rpmoq" onclick="openPicker('hid_rpmoq','btn_rpmoq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_tqysy" value=""><div class="sel-btn" id="btn_tqysy" onclick="openPicker('hid_tqysy','btn_tqysy')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_liwln" value=""><div class="sel-btn" id="btn_liwln" onclick="openPicker('hid_liwln','btn_liwln')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_vixws" value=""><div class="sel-btn" id="btn_vixws" onclick="openPicker('hid_vixws','btn_vixws')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_nqmav" value=""><div class="sel-btn" id="btn_nqmav" onclick="openPicker('hid_nqmav','btn_nqmav')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_wvqqb" value=""><div class="sel-btn" id="btn_wvqqb" onclick="openPicker('hid_wvqqb','btn_wvqqb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                        </div>
+                    </div>
+                    <div class="leave-row">
+                        <span class="leave-label">العطل السنويــــة :</span>
+                        <div class="leave-select-container">
+                            <input type="hidden" class="name-select" onchange="" style="" id="hid_wbcxb" value=""><div class="sel-btn" id="btn_wbcxb" onclick="openPicker('hid_wbcxb','btn_wbcxb')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_cfaib" value=""><div class="sel-btn" id="btn_cfaib" onclick="openPicker('hid_cfaib','btn_cfaib')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_usjye" value=""><div class="sel-btn" id="btn_usjye" onclick="openPicker('hid_usjye','btn_usjye')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_fgaqi" value=""><div class="sel-btn" id="btn_fgaqi" onclick="openPicker('hid_fgaqi','btn_fgaqi')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_shsii" value=""><div class="sel-btn" id="btn_shsii" onclick="openPicker('hid_shsii','btn_shsii')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_dxqhr" value=""><div class="sel-btn" id="btn_dxqhr" onclick="openPicker('hid_dxqhr','btn_dxqhr')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_mzscp" value=""><div class="sel-btn" id="btn_mzscp" onclick="openPicker('hid_mzscp','btn_mzscp')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_moudq" value=""><div class="sel-btn" id="btn_moudq" onclick="openPicker('hid_moudq','btn_moudq')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_vphml" value=""><div class="sel-btn" id="btn_vphml" onclick="openPicker('hid_vphml','btn_vphml')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_zqspo" value=""><div class="sel-btn" id="btn_zqspo" onclick="openPicker('hid_zqspo','btn_zqspo')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                        </div>
+                    </div>
+                    <div class="leave-row">
+                        <span class="leave-label">العطل المرضيــــة :</span>
+                        <div class="leave-select-container">
+                            <input type="hidden" class="name-select" onchange="" style="" id="hid_aprpf" value=""><div class="sel-btn" id="btn_aprpf" onclick="openPicker('hid_aprpf','btn_aprpf')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_bigsz" value=""><div class="sel-btn" id="btn_bigsz" onclick="openPicker('hid_bigsz','btn_bigsz')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_qiieg" value=""><div class="sel-btn" id="btn_qiieg" onclick="openPicker('hid_qiieg','btn_qiieg')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_ocrtu" value=""><div class="sel-btn" id="btn_ocrtu" onclick="openPicker('hid_ocrtu','btn_ocrtu')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_dsfzk" value=""><div class="sel-btn" id="btn_dsfzk" onclick="openPicker('hid_dsfzk','btn_dsfzk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_jdlmk" value=""><div class="sel-btn" id="btn_jdlmk" onclick="openPicker('hid_jdlmk','btn_jdlmk')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_oppap" value=""><div class="sel-btn" id="btn_oppap" onclick="openPicker('hid_oppap','btn_oppap')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_xmbij" value=""><div class="sel-btn" id="btn_xmbij" onclick="openPicker('hid_xmbij','btn_xmbij')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_qiddc" value=""><div class="sel-btn" id="btn_qiddc" onclick="openPicker('hid_qiddc','btn_qiddc')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div><input type="hidden" class="name-select" onchange="" style="" id="hid_bapey" value=""><div class="sel-btn" id="btn_bapey" onclick="openPicker('hid_bapey','btn_bapey')" ontouchstart="" style="min-width:52px;max-width:100%;">—</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- أزرار الحفظ والطباعة -->
+    <button class="btn btn-save" onclick="saveCurrentDuties()">💾 حفظ الجدول (ذاكرة الهاتف)</button>
+    <button class="btn btn-print" onclick="window.print()">🖨️ تصدير التقرير النهائي كـ PDF / طباعة</button>
+</div>
+
+<script>
+    // ============================================================
+    // بنية مفاتيح الجدول الرئيسي (عنوان كل select حسب موضعه)
+    // يتطابق مع ترتيب querySelectorAll('.name-select')
+    // ============================================================
+    const VEHICLE_HEADERS = [
+        'AMB01','AMB02','AMB03','AMB04','AMB_MED','GRIMP',
+        'FPTL','VSR','CCFM','CCI6k','CCI12k','RENDEP'
+    ];
+    const ROW_LABELS = ['ر.العدد','الفرقة_1','الفرقة_2','الفرقة_3','السائق'];
+
+
+    // ================================================================
+    // قاعدة بيانات الفصيلة — مستخرجة من الوثيقة الرسمية
+    // رمز الرتبة: * = رقيب/ضابط صف   # = عريف   (بدون رمز = عون/سائق)
+    // ================================================================
+    const FASILA_DB = {
+
+        // المناصب الثابتة (لا تدخل في قوائم التناوب)
+        fixedPosts: {
+            officer:   { label: 'ضابط المداومة',   note: 'يعين من المديرية — متغير — يحسب كضابط', name: '' },
+            commander: { label: 'قائد الفصيلة',    note: 'الأصل: بوعبدالله يوسف',                name: 'بوعبدالله يوسف' },
+            booking:   { label: 'عون الحجز',       note: 'ثابت',                                  name: 'بوالرماد' },
+            dirGuard:  { label: 'حارس المديرية',   note: 'الشبيه — ثابت',                         name: 'بوالزرايب' },
+            mtcChief:  { label: 'قائد م.ت.ع',      note: 'الرقيب بوالشعر ياسين — ثابت',           name: 'بوالشعر ياسين *' },
+        },
+
+        // بدائل قائد الفصيلة عند الغياب (بالترتيب)
+        commanderBackups: [
+            'حراتي نصر الدين *',   // المساعد الأول — الأول في التناوب
+            'جزار توفيق *',
+            'مجبار عيسى *',
+            'عفاقي عبد الهادي *',
+            'بن عامر *',
+        ],
+
+        // الرقيب اليومي — بالتناوب
+        dailySgt: [
+            'جزار توفيق *',
+            'مجبار عيسى *',
+            'عفاقي عبد الهادي *',
+            'بن عامر *',
+            'حراتي نصر الدين *',
+        ],
+
+        // رؤساء عدد سيارات الإسعاف — بالتناوب على العرفاء الخمسة
+        ambChiefs: [
+            'قادري عبد الحق #',
+            'بوويدين خالد #',
+            'مشقف شراف الدين #',
+            'شلي تقي الدين #',
+            'زويد العيد #',
+        ],
+
+        // عريف الدورية — بالتناوب على جميع العرفاء
+        patrolCpls: [
+            'قادري عبد الحق #',
+            'بوويدين خالد #',
+            'مشقف شراف الدين #',
+            'شلي تقي الدين #',
+            'زويد العيد #',
+            'بوالصبعيين #',
+            'بن السعيد الصالح #',
+            'حمودة رياض #',
+            'بودرقة شوقي #',
+            'فلاحي هشام #',
+            'مجراب معاد #',
+            'شنينبة عصام #',
+            'شتوان جعفر #',
+            'بوالعراق احسن #',
+            'بوكرك عادل #',
+        ],
+
+        // سائقو سيارات الإسعاف
+        ambDrivers: [
+            'بن السعيد الصالح #',
+            'حمودة رياض #',
+            'بودرقة شوقي #',
+            'فلاحي هشام #',
+        ],
+
+        // سائقو الشاحنات
+        truckDrivers: [
+            'مجراب معاد #',
+            'شنينبة عصام #',
+            'شتوان جعفر #',
+            'بوالعراق احسن #',
+            'بوكرك عادل #',
+        ],
+
+        // أعوان الفرقة الميدانية (سيارات إسعاف + شاحنات + حراسة + ثكنة)
+        fieldAgents: [
+            'حرتي كريم',
+            'بوقزولة السعيد',
+            'كاسح بدر الدين',
+            'بوشايلة وسيم',
+            'نقاش عماد الدين',
+            'غوالة بشير',
+            'بيدة هارون',
+        ],
+
+        // العاملون على مستوى م.ت.ع فقط (لا يدخلون في التناوب الميداني)
+        mtcOnly: [
+            'بوالشعر ياسين *',   // قائد المجموعة
+            'بوراوي حمزة #',
+            'معافي داود #',
+        ],
+
+        // الأطباء — يعملون على AMB MED فقط (يدخلون يدوياً)
+        doctors: [
+            'قنيش عبد الغاني',
+            'بخوش سمير',
+            'عبد الغاني',
+            'رضا',
+        ],
+
+        // الفرق المعزولة (يدخل يدوياً — ليسوا من الفصيلة)
+        externalGroups: {
+            grimp: 'فرقة GRIMP — التعرف بالأماكن الوعرة — إدخال يدوي',
+            dogs:  'فرقة الكلاب المدربة — تعداد خاص — إدخال يدوي (TOYEXEP)',
+        },
+
+        // مسؤول النادي
+        clubManager: 'بن الشيهب بدر الدين',
+
+        // المناوبون (طهاة المطبخ)
+        kitchen: [
+            { shift: 'صباح', name: 'بنداس الياس' },
+            { shift: 'مساء', name: 'بوالعراس محمد' },
+        ],
+    };
+
+    // ================================================================
+    // بناء قائمة الأسماء الكاملة للقوائم المنسدلة
+    // الترتيب: رقباء → عرفاء → سائقون → أعوان → أطباء
+    // ================================================================
+    function buildNamesList() {
+        const all = [];
+        const seen = new Set();
+        const add = n => { if(n && !seen.has(n)) { seen.add(n); all.push(n); } };
+
+        // رقباء
+        add('بوعبدالله يوسف *');       // قائد الفصيلة
+        FASILA_DB.dailySgt.forEach(add); // جزار، مجبار، عفاقي، بن عامر، حراتي
+        FASILA_DB.mtcOnly.filter(n=>n.includes('*')).forEach(add); // بوالشعر ياسين
+
+        // عرفاء (كل العرفاء بالترتيب)
+        FASILA_DB.ambChiefs.forEach(add);    // قادري، بوويدين، مشقف، شلي، زويد
+        FASILA_DB.patrolCpls.forEach(add);   // باقي العرفاء
+        FASILA_DB.mtcOnly.filter(n=>n.includes('#')).forEach(add); // بوراوي، معافي
+
+        // سائقون
+        FASILA_DB.ambDrivers.forEach(add);
+        FASILA_DB.truckDrivers.forEach(add);
+
+        // أعوان ميدانيون
+        FASILA_DB.fieldAgents.forEach(add);
+
+        // مطبخ
+        FASILA_DB.kitchen.forEach(k => add(k.name));
+
+        // مسؤول النادي
+        add(FASILA_DB.clubManager);
+
+        // أطباء (يُضافون للقائمة لكن يُدخلون يدوياً في AMB MED)
+        FASILA_DB.doctors.forEach(add);
+
+        return all;
+    }
+
+
+    // ================================================================
+    // ===== نظام التناوب الذكي =====
+    // ================================================================
+    //
+    // المهام ذات التناوب وأصحابها من FASILA_DB:
+    //   - رقيب_يومي    → dailySgt
+    //   - رئيس_عدد_AMB → ambChiefs  (5 عرفاء فقط)
+    //   - عريف_دورية   → patrolCpls (15 عريف)
+    //   - سائق_AMB     → ambDrivers
+    //   - سائق_شاحنة   → truckDrivers
+    //   - حراسة        → fieldAgents + ambDrivers + truckDrivers
+    //
+    // خوارزمية الاقتراح:
+    //   1. لكل عون في القائمة → ابحث في الأرشيف عن آخر مناوبة أدى فيها هذا الدور
+    //   2. اقترح من مضى على أدائه أطول فترة (الأقدم في الأداء = الأولى بالدور)
+    //   3. إذا اختار المستخدم شخصاً آخر → تنبيه بالأولى منه
+    // ================================================================
+
+    // تعريف مجموعات التناوب
+    const ROTATION_GROUPS = {
+        'رقيب_يومي':    { pool: () => FASILA_DB.dailySgt,    label: 'الرقيب اليومي' },
+        'رئيس_عدد_AMB': { pool: () => FASILA_DB.ambChiefs,   label: 'رئيس عدد AMB' },
+        'عريف_دورية':   { pool: () => FASILA_DB.patrolCpls,  label: 'عريف الدورية' },
+        'سائق_AMB':     { pool: () => FASILA_DB.ambDrivers,   label: 'سائق الإسعاف' },
+        'سائق_شاحنة':   { pool: () => FASILA_DB.truckDrivers, label: 'سائق الشاحنة' },
+        'حراسة':        { pool: () => [
+                            ...FASILA_DB.fieldAgents,
+                            ...FASILA_DB.ambDrivers,
+                            ...FASILA_DB.truckDrivers
+                          ], label: 'الحراسة' },
+    };
+
+    // ----------------------------------------------------------------
+    // احسب آخر مناوبة أدى فيها كل عون كل دور — من الأرشيف
+    // النتيجة: { roleKey: { agentName: lastDateStr|null } }
+    // ----------------------------------------------------------------
+    function buildRotationIndex() {
+        const archive = getArchive();
+        const idx = {};
+
+        Object.keys(ROTATION_GROUPS).forEach(role => {
+            idx[role] = {};
+            ROTATION_GROUPS[role].pool().forEach(name => {
+                idx[role][name] = null; // null = لم يؤدِ بعد
+            });
+        });
+
+        // مرّ على السجلات من الأقدم للأحدث (مقلوب)
+        [...archive].reverse().forEach(rec => {
+            if(!rec.snapshot || !rec.snapshot.assignments) return;
+            rec.snapshot.assignments.forEach(a => {
+                // تحديد الدور من task + vehicle
+                let role = detectRole(a);
+                if(role && idx[role] && idx[role].hasOwnProperty(a.agent)) {
+                    idx[role][a.agent] = rec.date;
+                }
+            });
+        });
+        return idx;
+    }
+
+    // استنتج الدور من بيانات اللقطة
+    function detectRole(a) {
+        const task    = (a.task    || '').trim();
+        const vehicle = (a.vehicle || '').trim();
+        const guard   = a.guardSlot;
+
+        if(guard) return 'حراسة';
+        if(task === 'ر.العدد') {
+            if(['AMB 01','AMB 02','AMB 03','AMB 04'].some(v => vehicle.includes(v.replace(' ',''))||vehicle.includes(v)))
+                return 'رئيس_عدد_AMB';
+            return 'رقيب_يومي';
+        }
+        if(task === 'السائق') {
+            if(vehicle.includes('AMB') || vehicle.includes('GRIMP') || vehicle.includes('MED'))
+                return 'سائق_AMB';
+            return 'سائق_شاحنة';
+        }
+        if(task === 'الفرقة' || task === 'عريف_دورية') {
+            // AMB01..AMB04 + AMB MED + GRIMP كلها تحتوي AMB أو GRIMP
+            if(vehicle.includes('AMB') || vehicle.includes('GRIMP'))
+                return 'عريف_دورية';
+        }
+        // أي عون في شاحنة (FPTL,VSR,CCFM,CCI,RENDEP) = فرقة شاحنة
+        if(task === 'الفرقة') return 'عريف_دورية';
+        return null;
+    }
+
+    // ----------------------------------------------------------------
+    // الاقتراح: من الأولى بالدور؟ (الأقدم في الأداء)
+    // agentPool = قائمة الأسماء المؤهلة
+    // idx[role] = { name → lastDate|null }
+    // ----------------------------------------------------------------
+    function suggestNext(roleKey, idx) {
+        const pool = ROTATION_GROUPS[roleKey].pool();
+        const roleIdx = idx[roleKey] || {};
+
+        // ترتيب: null أولاً (لم يؤد أبداً)، ثم الأقدم تاريخاً
+        const sorted = [...pool].sort((a, b) => {
+            const da = roleIdx[a] || null;
+            const db = roleIdx[b] || null;
+            if(!da && !db) return 0;
+            if(!da) return -1;
+            if(!db) return  1;
+            // مقارنة التواريخ — صيغة "YYYY / M / D"
+            const parseDate = s => {
+                if(!s) return new Date(0);
+                const parts = s.replace(/\s/g,'').split('/').map(p => parseInt(p)||1);
+                return new Date(parts[0]||2000, (parts[1]||1)-1, parts[2]||1);
+            };
+            return parseDate(da) - parseDate(db); // الأقدم أولاً
+        });
+        return sorted[0] || null;
+    }
+
+    // ----------------------------------------------------------------
+    // تنبيه تخطي الدور — يُستدعى عند تغيير أي select يدوياً
+    // ----------------------------------------------------------------
+    function checkRotationFairness(changedSelect, roleKey) {
+        if(!roleKey) return;
+        const chosenName = changedSelect.value.trim();
+        if(!chosenName) return;
+
+        const idx = buildRotationIndex();
+        const suggested = suggestNext(roleKey, idx);
+
+        if(suggested && suggested !== chosenName) {
+            const pool = ROTATION_GROUPS[roleKey].pool();
+            const roleIdx = idx[roleKey] || {};
+
+            // هل المقترح في نفس القائمة وأولى؟
+            const chosenLast    = roleIdx[chosenName] || null;
+            const suggestedLast = roleIdx[suggested]  || null;
+
+            const isSkip = !suggestedLast ||
+                (chosenLast && suggestedLast &&
+                    new Date(suggestedLast.replace(/\s/g,'').split('/').map((p,i)=>parseInt(p)||1).join('-')) <
+                    new Date(chosenLast.replace(/\s/g,'').split('/').map((p,i)=>parseInt(p)||1).join('-'))
+                );
+
+            if(isSkip) {
+                const lastStr = suggestedLast
+                    ? 'آخر مناوبة: ' + suggestedLast
+                    : 'لم يؤدِ هذا الدور بعد';
+                showRotationWarning(
+                    ROTATION_GROUPS[roleKey].label,
+                    suggested,
+                    lastStr,
+                    chosenName
+                );
+            }
+        }
+    }
+
+    // ----------------------------------------------------------------
+    // عرض تنبيه التناوب في لوحة مستقلة
+    // ----------------------------------------------------------------
+    function showRotationWarning(roleLabel, suggested, lastStr, chosen) {
+        let panel = document.getElementById('rotationWarningPanel');
+        if(!panel) return;
+        panel.style.display = 'block';
+        const list = document.getElementById('rotationWarningList');
+        const item = document.createElement('div');
+        item.className = 'rotation-warn-item';
+        item.innerHTML =
+            '<strong>' + roleLabel + '</strong>: ' +
+            'اخترت <span style="color:#c0392b">' + chosen + '</span> — ' +
+            'الأولى بالدور: <span style="color:#1d6820;font-weight:bold">' + suggested + '</span> ' +
+            '<em style="color:#888;">(' + lastStr + ')</em>' +
+            ' <button onclick="this.parentElement.remove();checkHideRotPanel()" ' +
+            'style="background:none;border:none;color:#aaa;cursor:pointer;font-size:13px">✕</button>';
+        list.appendChild(item);
+    }
+
+    function checkHideRotPanel() {
+        const list = document.getElementById('rotationWarningList');
+        if(list && !list.children.length)
+            document.getElementById('rotationWarningPanel').style.display = 'none';
+    }
+
+    // ----------------------------------------------------------------
+    // اقتراح تلقائي لجميع أدوار التناوب عند فتح التطبيق
+    // يملأ الخانات الفارغة فقط (لا يلغي الاختيارات اليدوية)
+    // ----------------------------------------------------------------
+    function applySuggestions() {
+        const archive = getArchive();
+        if(!archive.length) return; // لا أرشيف = لا اقتراحات بعد
+        const idx = buildRotationIndex();
+
+        // إظهار الاقتراحات في لوحة منفصلة
+        const sugg = {};
+        Object.keys(ROTATION_GROUPS).forEach(role => {
+            sugg[role] = suggestNext(role, idx);
+        });
+
+        let panel = document.getElementById('suggestionPanel');
+        if(!panel) return;
+
+        const body = document.getElementById('suggestionBody');
+        body.innerHTML = '';
+
+        let hasSugg = false;
+        Object.keys(ROTATION_GROUPS).forEach(role => {
+            const name = sugg[role];
+            if(!name) return;
+            hasSugg = true;
+            const roleIdx = idx[role] || {};
+            const lastDate = roleIdx[name] || 'لم يؤدِ بعد';
+
+            // بناء ترتيب التناوب الكامل للدور
+            const pool = ROTATION_GROUPS[role].pool();
+            const roleIdx = idx[role] || {};
+            const sorted = [...pool].sort((a,b) => {
+                const da = roleIdx[a]||null, db = roleIdx[b]||null;
+                if(!da&&!db) return 0; if(!da) return -1; if(!db) return 1;
+                const pd = s => { const p=s.replace(/\s/g,'').split('/').map(x=>parseInt(x)||1); return new Date(p[0],(p[1]||1)-1,p[2]||1); };
+                return pd(da)-pd(db);
+            });
+
+            const row = document.createElement('div');
+            row.className = 'sugg-row';
+            // عرض أول 3 في الترتيب
+            const top3 = sorted.slice(0,3).map((n,i) => {
+                const ld = roleIdx[n] || 'لم يؤدِ بعد';
+                const medal = i===0?'🥇':i===1?'🥈':'🥉';
+                return medal + ' ' + n.replace(/ [*#]$/,'') + ' <small>(' + ld + ')</small>';
+            }).join(' &nbsp;|&nbsp; ');
+            row.innerHTML =
+                '<span class="sugg-role">' + ROTATION_GROUPS[role].label + '</span>' +
+                '<span class="sugg-name" style="flex:1;font-size:11px;">' + top3 + '</span>';
+            body.appendChild(row);
+        });
+
+        if(hasSugg) panel.style.display = 'block';
+        else panel.style.display = 'none';
+    }
+
+
+
+
+    // ================================================================
+    // ===== نظام الاختيار بالضغط (بديل select — يعمل في file://) =====
+    // ================================================================
+
+    let _pickerTarget = null; // الـ select المخفي الحالي
+    let _allNames = [];       // قائمة الأسماء الكاملة
+
+    // تحويل كل select إلى زر مرئي
+    function initPicker() {
+        document.querySelectorAll('select.name-select').forEach(sel => {
+            if(sel.dataset.picker) return;
+            sel.dataset.picker = '1';
+            sel.style.display = 'none';
+
+            const btn = document.createElement('span');
+            btn.className = 'sel-btn';
+            btn.dataset.pickerBtn = '1';
+            btn._sel = sel;
+            sel._btn = btn;
+
+            _updateBtn(btn, sel.value);
+
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openPicker(sel, btn);
+            });
+
+            sel.parentNode.insertBefore(btn, sel);
+        });
+
+        // حارس المديرية
+        const dg = document.getElementById('directorateGuardSelect');
+        if(dg && !dg.dataset.picker) {
+            dg.dataset.picker = '1';
+            dg.style.display = 'none';
+            const btn = document.createElement('span');
+            btn.className = 'sel-btn';
+            btn.style.minWidth = '100px';
+            btn.style.fontSize = '12px';
+            btn._sel = dg;
+            dg._btn = btn;
+            _updateBtn(btn, dg.value);
+            btn.addEventListener('click', e => { e.stopPropagation(); openPicker(dg, btn); });
+            dg.parentNode.insertBefore(btn, dg);
+        }
+    }
+
+    function _updateBtn(btn, value) {
+        if(!value || value === '') {
+            btn.textContent = '—';
+            btn.classList.remove('has-val');
+        } else {
+            // اختصار: احذف رمز الرتبة للعرض فقط
+            btn.textContent = value.replace(/ [*#]$/, '');
+            btn.classList.add('has-val');
+        }
+    }
+
+    function openPicker(sel, btn) {
+        _pickerTarget = sel;
+        const overlay = document.getElementById('pickerOverlay');
+        const items   = document.getElementById('pickerItems');
+        const title   = document.getElementById('pickerTitle');
+
+        // عنوان: label الخانة إن وُجد
+        const td = sel.closest('td') || sel.closest('.officer-item');
+        const lbl = td ? (td.querySelector('label') || null) : null;
+        title.textContent = lbl ? lbl.textContent.replace(':','').trim() : 'اختر عوناً';
+
+        items.innerHTML = '';
+
+        // زر المسح
+        const clearEl = document.createElement('div');
+        clearEl.className = 'picker-item clear-item';
+        clearEl.textContent = '✕  مسح الخانة';
+        clearEl.addEventListener('click', () => pickValue(''));
+        items.appendChild(clearEl);
+
+        // تجميع الأسماء حسب الرتبة
+        const groups = [
+            { label: '🎖️ رقباء',          test: n => n.includes(' *') },
+            { label: '⭐ عرفاء',           test: n => n.includes(' #') },
+            { label: '👷 أعوان / سائقون', test: n => !n.includes(' *') && !n.includes(' #') },
+        ];
+
+        groups.forEach(g => {
+            const members = _allNames.filter(g.test);
+            if(!members.length) return;
+
+            const hdr = document.createElement('div');
+            hdr.className = 'picker-item rank-header';
+            hdr.textContent = g.label;
+            items.appendChild(hdr);
+
+            members.forEach(name => {
+                const el = document.createElement('div');
+                el.className = 'picker-item' + (sel.value === name ? ' selected' : '');
+                el.textContent = name.replace(/ [*#]$/, ''); // بدون رمز الرتبة
+                el.addEventListener('click', () => pickValue(name));
+                items.appendChild(el);
+            });
+        });
+
+        overlay.classList.add('open');
+    }
+
+    function pickValue(value) {
+        if(!_pickerTarget) return;
+        const sel = _pickerTarget;
+        // تعيين القيمة في الـ select المخفي
+        // إذا القيمة موجودة في الخيارات عيّنها، وإلا اتركها فارغة
+        const exists = Array.from(sel.options).some(o => o.value === value);
+        sel.value = (exists || value === '') ? value : '';
+        // تحديث الزر
+        if(sel._btn) _updateBtn(sel._btn, sel.value);
+        closePicker();
+        // إطلاق حدث change
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function closePicker() {
+        document.getElementById('pickerOverlay').classList.remove('open');
+        _pickerTarget = null;
+    }
+
+    // تحديث جميع الأزرار بعد fillDropdowns
+    function refreshAllBtns() {
+        document.querySelectorAll('select.name-select').forEach(sel => {
+            if(sel._btn) _updateBtn(sel._btn, sel.value);
+        });
+        const dg = document.getElementById('directorateGuardSelect');
+        if(dg && dg._btn) _updateBtn(dg._btn, dg.value);
+    }
+
+
+    // ================================================================
+    // ===== نظام الاختيار بالضغط — نسخة مضمونة =====
+    // ================================================================
+    var _pickerInputId = null;
+    var _pickerBtnId   = null;
+    var _allNames      = [];
+
+    function openPicker(inputId, btnId) {
+        _pickerInputId = inputId;
+        _pickerBtnId   = btnId;
+
+        // تأكد من بناء القائمة
+        if(!_allNames || !_allNames.length) {
+            _allNames = buildNamesList();
+        }
+
+        var overlay = document.getElementById('pickerOverlay');
+        var items   = document.getElementById('pickerItems');
+        var input   = document.getElementById(inputId);
+        var curVal  = input ? input.value : '';
+
+        items.innerHTML = '';
+
+        // زر المسح
+        var clr = document.createElement('div');
+        clr.className = 'picker-item clear-item';
+        clr.textContent = '✕  مسح الخانة';
+        clr.onclick = function() { pickValue(''); };
+        items.appendChild(clr);
+
+        // تجميع حسب الرتبة
+        var groups = [
+            { label: '🎖️ رقباء (ضباط الصف)', test: function(n){ return n.indexOf(' *') !== -1; } },
+            { label: '⭐ عرفاء',               test: function(n){ return n.indexOf(' #') !== -1; } },
+            { label: '👷 أعوان وسائقون',       test: function(n){ return n.indexOf(' *') === -1 && n.indexOf(' #') === -1; } },
+        ];
+
+        groups.forEach(function(g) {
+            var members = _allNames.filter(g.test);
+            if(!members.length) return;
+
+            var hdr = document.createElement('div');
+            hdr.className = 'picker-item rank-header';
+            hdr.textContent = g.label;
+            items.appendChild(hdr);
+
+            members.forEach(function(name) {
+                var el = document.createElement('div');
+                el.className = 'picker-item' + (curVal === name ? ' selected' : '');
+                // عرض الاسم بدون رمز الرتبة
+                el.textContent = name.replace(/ [*#]$/, '');
+                el.onclick = function() { pickValue(name); };
+                items.appendChild(el);
+            });
+        });
+
+        overlay.style.display = '-webkit-flex';
+        overlay.style.display = 'flex';
+    }
+
+    function pickValue(value) {
+        if(!_pickerInputId) return;
+
+        var input = document.getElementById(_pickerInputId);
+        var btn   = document.getElementById(_pickerBtnId);
+
+        if(input) {
+            input.value = value;
+            // إطلاق حدث change
+            var ev = document.createEvent('Event');
+            ev.initEvent('change', true, true);
+            input.dispatchEvent(ev);
+        }
+
+        if(btn) {
+            if(!value) {
+                btn.textContent = '—';
+                btn.classList.remove('has-val');
+                btn.classList.remove('repeated-warning');
+            } else {
+                btn.textContent = value.replace(/ [*#]$/, '');
+                btn.classList.add('has-val');
+            }
+        }
+
+        closePicker();
+    }
+
+    function closePicker() {
+        var ov = document.getElementById('pickerOverlay');
+        if(ov) { ov.style.display = 'none'; }
+        _pickerInputId = null;
+        _pickerBtnId   = null;
+    }
+
+    function refreshAllBtns() {
+        // تحديث الأزرار بالقيم الحالية للـ inputs
+        document.querySelectorAll('.name-select').forEach(function(inp) {
+            var btn = document.getElementById(inp.id.replace('hid_', 'btn_'));
+            if(!btn) return;
+            if(inp.value) {
+                btn.textContent = inp.value.replace(/ [*#]$/, '');
+                btn.classList.add('has-val');
+            } else {
+                btn.textContent = '—';
+                btn.classList.remove('has-val');
+            }
+        });
+        // حارس المديرية
+        var dg  = document.getElementById('directorateGuardSelect');
+        var dgb = document.getElementById('btn_dg');
+        if(dg && dgb) {
+            dgb.textContent = dg.value ? dg.value.replace(/ [*#]$/, '') : 'بوالزرايب';
+            if(dg.value) dgb.classList.add('has-val');
+        }
+    }
+
+    function initPicker() {
+        // لا شيء — الأزرار مدمجة في HTML مباشرة
+    }
+
+    // ============================================================
+    // الوظائف الأساسية
+    // ============================================================
+    window.onload = function() {
+        // 1. التاريخ
+        let t = new Date();
+        document.getElementById('current_date').innerText =
+            t.getFullYear() + ' / ' + (t.getMonth()+1) + ' / ' + t.getDate();
+
+        // 2. بناء قائمة الأسماء وتحديث النظام
+        _allNames = buildNamesList();
+        document.getElementById('namesInput').value = _allNames.join('،');
+
+        // 3. استعادة آخر توزيع محفوظ
+        var storedDuties = localStorage.getItem('mila_civil_duties_counter');
+        if(storedDuties) {
+            try {
+                var duties = JSON.parse(storedDuties);
+                var inputs = document.querySelectorAll('.name-select');
+                inputs.forEach(function(inp, i) {
+                    if(duties[i]) inp.value = duties[i];
+                });
+            } catch(e) {}
+        }
+
+        // 4. استعادة حارس المديرية
+        var dg = document.getElementById('directorateGuardSelect');
+        var savedDg = localStorage.getItem('stored_dg_guard');
+        if(dg) dg.value = savedDg || 'بوالزرايب';
+
+        if(localStorage.getItem('manual_off'))
+            document.getElementById('manual_officers').value = localStorage.getItem('manual_off');
+        if(localStorage.getItem('manual_serg'))
+            document.getElementById('manual_sergeants').value = localStorage.getItem('manual_serg');
+        if(localStorage.getItem('manual_agn'))
+            document.getElementById('manual_agents').value = localStorage.getItem('manual_agn');
+        if(localStorage.getItem('doc_num'))
+            document.getElementById('doc_num').value = localStorage.getItem('doc_num');
+        if(localStorage.getItem('f_num_stored'))
+            document.getElementById('f_num').value = localStorage.getItem('f_num_stored');
+
+        // 5. تحديث الأزرار بالقيم المستعادة
+        refreshAllBtns();
+
+        calculateActiveStaff();
+        renderArchiveList();
+        applySuggestions();
+
+        // ربط التغييرات
+        document.querySelectorAll('.name-select').forEach(s => {
+            s.addEventListener('change', () => { calculateActiveStaff(); checkRepetitions(); });
+        });
+    }
+
+
+    function toggleFasilaPanel() {
+        const body  = document.getElementById('fasilaBody');
+        const arrow = document.getElementById('fasila-arrow');
+        if(body.classList.contains('open')) {
+            body.classList.remove('open');
+            arrow.textContent = '▼';
+        } else {
+            body.classList.add('open');
+            arrow.textContent = '▲';
+        }
+    }
+
+    function resetAndReloadNames() {
+        if(!confirm('هل تريد إعادة تحميل الأسماء من قاعدة البيانات؟\nسيتم مسح القائمة الحالية واستبدالها.')) return;
+        const names = buildNamesList();
+        const namesStr = names.join('،');
+        localStorage.setItem('mila_civil_names_counter', namesStr);
+        document.getElementById('namesInput').value = namesStr;
+        fillDropdowns(names);
+        calculateActiveStaff();
+        alert('✅ تم إعادة تحميل أسماء الفصيلة بنجاح!');
+    }
+
+    function saveNamesList() {
+        let input = document.getElementById('namesInput').value;
+        let cleanInput = input.replace(/,/g, '،');
+        localStorage.setItem('mila_civil_names_counter', cleanInput);
+        fillDropdowns(cleanInput.split('،'));
+        calculateActiveStaff();
+        alert('تم حفظ الأسماء وتحديث القوائم بنجاح!');
+    }
+
+    function fillDropdowns(arr) {
+        // تحديث القائمة العامة للاستخدام في النافذة
+        _allNames = arr.filter(function(n){ return n && n.trim() !== ''; });
+        // تحديث الأزرار الحالية
+        if(typeof refreshAllBtns === 'function') refreshAllBtns();
+    }
+
+    function calculateActiveStaff() {
+        // name-select هي الآن hidden inputs
+        let selects = document.querySelectorAll('.name-select');
+        let uniqueActiveNames = new Set();
+        selects.forEach(function(inp) {
+            if(inp.value && inp.value.trim() !== '')
+                uniqueActiveNames.add(inp.value.trim());
+        });
+        let dgEl  = document.getElementById('directorateGuardSelect');
+        let dgVal = dgEl ? dgEl.value : '';
+        if(dgVal && dgVal.trim() !== "") uniqueActiveNames.add(dgVal.trim());
+
+        let officersCount = 0, sergeantsCount = 0, agentsCount = 0;
+        uniqueActiveNames.forEach(name => {
+            if (name.includes('*')) officersCount++;
+            else if (name.includes('#')) sergeantsCount++;
+            else agentsCount++;
+        });
+        document.getElementById('count_officers').value  = officersCount;
+        document.getElementById('count_sergeants').value = sergeantsCount;
+        document.getElementById('count_agents').value    = agentsCount;
+    }
+
+    function saveCurrentDuties() {
+        let selects = document.querySelectorAll('.name-select');
+        let currentData = [];
+        selects.forEach(function(inp){ currentData.push(inp.value || ''); });
+        localStorage.setItem('mila_civil_duties_counter', JSON.stringify(currentData));
+        localStorage.setItem('stored_dg_guard', document.getElementById('directorateGuardSelect').value);
+        localStorage.setItem('manual_off',  document.getElementById('manual_officers').value);
+        localStorage.setItem('manual_serg', document.getElementById('manual_sergeants').value);
+        localStorage.setItem('manual_agn',  document.getElementById('manual_agents').value);
+        localStorage.setItem('doc_num',     document.getElementById('doc_num').value);
+        localStorage.setItem('f_num_stored',document.getElementById('f_num').value);
+        alert('تم حفظ الجدول بالكامل بنجاح!');
+    }
+
+    // ============================================================
+    // ===== نظام الأرشيف والتنبيه المتكامل =====
+    // ============================================================
+    //
+    // بنية اللقطة المحفوظة:
+    // snapshot: {
+    //   assignments: [ { agent, vehicle, task, guardSlot } ],
+    //   // agent    = اسم العون
+    //   // vehicle  = اسم المركبة (AMB01, FPTL...)  أو "حراسة"
+    //   // task     = المهمة (ر.العدد، الفرقة، السائق، خدمات...)
+    //   // guardSlot= وقت الحراسة (08-10، 10-12...) أو null
+    // }
+    //
+    // ثلاثة أنواع تنبيه مستقلة:
+    //  1. نفس العون + نفس المركبة  → تكرار مركبة/سيارة
+    //  2. نفس العون + نفس المهمة   → تكرار مهمة (ر.العدد، سائق...)
+    //  3. نفس العون + نفس وقت الحراسة → تكرار وقت الحراسة
+    // ============================================================
+
+    // استخراج وقت الحراسة من خلية time-cell في نفس الصف
+    function getTimeLabel(tr) {
+        const tc = tr.querySelector('.time-cell');
+        if(!tc) return null;
+        return tc.innerText.replace(/\s+/g,' ').trim(); // مثل "08 سا 10 سا"
+    }
+
+    // استخراج لقطة كاملة ومنظمة
+    function captureCurrentSnapshot() {
+        const mainTable = document.querySelector('table.main-table');
+        if(!mainTable) return { assignments: [] };
+
+        // رؤوس الأعمدة (المركبات) — نتجاهل: المهام (0)، التوقيت (n-2)، الحراسة (n-1)
+        const headerCells = Array.from(mainTable.querySelectorAll('thead tr th'));
+        const vehicles = [];
+        headerCells.forEach((th, idx) => {
+            if(idx === 0 || idx >= headerCells.length - 2) return;
+            // نأخذ أول سطر من النص كاسم مختصر
+            const raw = th.innerText.trim().split(/
+/)[0].trim();
+            vehicles.push(raw);
+        });
+
+        const assignments = [];
+        const rows = Array.from(mainTable.querySelectorAll('tbody tr'));
+
+        const TASK_MAP = {
+            0: 'ر.العدد',
+            1: 'الفرقة',
+            2: 'السائق',
+            3: 'خدمات_عناوين',  // سطر العناوين — لا أعوان فيه
+            4: 'خدمات',
+            5: 'أسفل'
+        };
+
+        rows.forEach((tr, rowIdx) => {
+            const taskCell = tr.querySelector('.task-cell');
+            const taskLabel = taskCell ? taskCell.innerText.trim() : (TASK_MAP[rowIdx] || 'صف'+(rowIdx+1));
+            const timeLabel = getTimeLabel(tr); // وقت الفترة (للحراسة لاحقاً)
+
+            // --- أعوان المركبات ---
+            const cells = Array.from(tr.querySelectorAll('td'));
+            let vIdx = 0;
+            cells.forEach(td => {
+                if(td.classList.contains('time-cell'))     return;
+                if(td.classList.contains('task-cell'))     return;
+                if(td.classList.contains('diagonal-line')) return;
+                if(td.classList.contains('closed-cell'))   return;
+                // تجاهل خانة الحراسة (guard-split) هنا، نعالجها منفصلة
+                if(td.querySelector('.guard-split'))       { vIdx++; return; }
+
+                const colSpan = parseInt(td.getAttribute('colspan') || '1');
+                const vehicleName = vehicles[vIdx] || ('عمود'+(vIdx+1));
+                const cellSelects = td.querySelectorAll('select.name-select');
+                cellSelects.forEach(sel => {
+                    const v = sel.value.trim();
+                    if(v) assignments.push({ agent: v, vehicle: vehicleName, task: taskLabel, guardSlot: null });
+                });
+                vIdx += colSpan;
+            });
+
+            // --- أعوان الحراسة في نفس الصف ---
+            const guardDiv = tr.querySelector('.guard-split');
+            if(guardDiv) {
+                const gSelects = guardDiv.querySelectorAll('select.name-select');
+                const slots = ['أول', 'ثاني'];
+                gSelects.forEach((sel, gi) => {
+                    const v = sel.value.trim();
+                    if(v) {
+                        assignments.push({
+                            agent: v,
+                            vehicle: 'حراسة',
+                            task: 'حراسة',
+                            guardSlot: timeLabel || ('حراسة_'+(gi+1))
+                        });
+                    }
+                });
+            }
+        });
+
+        return { assignments };
+    }
+
+    // ============================================================
+    // أرشيف
+    // ============================================================
+    function getArchive() {
+        try { return JSON.parse(localStorage.getItem('mila_archive') || '[]'); }
+        catch(e) { return []; }
+    }
+    function setArchive(arr) {
+        localStorage.setItem('mila_archive', JSON.stringify(arr));
+    }
+
+    function saveToArchive() {
+        const date   = document.getElementById('current_date').innerText.trim();
+        const fasila = document.getElementById('f_num').value.trim() || '?';
+        const docNum = document.getElementById('doc_num').value.trim();
+
+        if(!fasila || fasila === '?') {
+            alert('⚠️ الرجاء إدخال رقم الفصيلة أولاً قبل الحفظ في الأرشيف');
+            return;
+        }
+
+        const selects = document.querySelectorAll('.name-select');
+        const duties  = [];
+        selects.forEach(s => duties.push(s.value));
+
+        const archive = getArchive();
+        const key     = date + '_ف' + fasila;
+        const existIdx = archive.findIndex(r => r.key === key);
+
+        const record = {
+            key, date, fasila, docNum,
+            duties,
+            dgGuard : document.getElementById('directorateGuardSelect').value,
+            manOff  : document.getElementById('manual_officers').value,
+            manSerg : document.getElementById('manual_sergeants').value,
+            manAgn  : document.getElementById('manual_agents').value,
+            snapshot: captureCurrentSnapshot(),
+            savedAt : new Date().toLocaleString('ar-DZ')
+        };
+
+        if(existIdx >= 0) {
+            if(!confirm('يوجد سجل بنفس التاريخ والفصيلة. هل تريد استبداله؟')) return;
+            archive[existIdx] = record;
+        } else {
+            archive.unshift(record);
+        }
+        setArchive(archive);
+        renderArchiveList();
+        alert('✅ تم الحفظ في الأرشيف!\nالتاريخ: ' + date + ' — الفصيلة: ' + fasila);
+    }
+
+    let selectedArchiveKey = null;
+
+    function renderArchiveList() {
+        const archive = getArchive();
+        const container = document.getElementById('archiveList');
+        if(!archive.length) {
+            container.innerHTML = '<div style="text-align:center;color:#999;padding:10px;font-size:12px;">لا توجد سجلات في الأرشيف بعد</div>';
+            return;
+        }
+        container.innerHTML = '';
+        archive.forEach(rec => {
+            const div = document.createElement('div');
+            div.className = 'archive-item' + (rec.key === selectedArchiveKey ? ' selected' : '');
+            div.innerHTML =
+                '<span class="arc-date">📅 ' + rec.date + '</span>' +
+                '<span class="arc-fasila">ف.' + rec.fasila + '</span>' +
+                '<span style="color:#555;font-size:11px;flex:1;">' + (rec.savedAt||'') + '</span>' +
+                '<button class="arc-del" title="حذف" onclick="deleteArchiveByKey(\'' + rec.key + '\',event)">✕</button>';
+            div.addEventListener('click', () => {
+                selectedArchiveKey = rec.key;
+                document.querySelectorAll('.archive-item').forEach(el => el.classList.remove('selected'));
+                div.classList.add('selected');
+            });
+            container.appendChild(div);
+        });
+    }
+
+    function loadFromArchive() {
+        if(!selectedArchiveKey) { alert('اختر سجلاً من القائمة أولاً'); return; }
+        const archive = getArchive();
+        const rec = archive.find(r => r.key === selectedArchiveKey);
+        if(!rec) { alert('السجل غير موجود'); return; }
+        if(!confirm('تحميل: ' + rec.date + ' — الفصيلة ' + rec.fasila + '\nهل تريد المتابعة؟')) return;
+
+        const storedNames = localStorage.getItem('mila_civil_names_counter');
+        if(storedNames) fillDropdowns(storedNames.split('،'));
+
+        const selects = document.querySelectorAll('.name-select');
+        selects.forEach((s, i) => { if(rec.duties[i] !== undefined) s.value = rec.duties[i]; });
+
+        if(rec.dgGuard) document.getElementById('directorateGuardSelect').value = rec.dgGuard;
+        if(rec.manOff)  document.getElementById('manual_officers').value  = rec.manOff;
+        if(rec.manSerg) document.getElementById('manual_sergeants').value = rec.manSerg;
+        if(rec.manAgn)  document.getElementById('manual_agents').value    = rec.manAgn;
+        document.getElementById('f_num').value   = rec.fasila;
+        document.getElementById('doc_num').value = rec.docNum || '';
+
+        calculateActiveStaff();
+        checkRepetitions();
+        alert('✅ تم تحميل السجل بنجاح!');
+    }
+
+    function deleteSelectedArchive() {
+        if(!selectedArchiveKey) { alert('اختر سجلاً أولاً'); return; }
+        deleteArchiveByKey(selectedArchiveKey, null);
+    }
+
+    function deleteArchiveByKey(key, evt) {
+        if(evt) evt.stopPropagation();
+        if(!confirm('هل تريد حذف هذا السجل من الأرشيف؟')) return;
+        let archive = getArchive().filter(r => r.key !== key);
+        setArchive(archive);
+        if(selectedArchiveKey === key) selectedArchiveKey = null;
+        renderArchiveList();
+    }
+
+    // ============================================================
+    // ===== نظام فحص التكرار الثلاثي =====
+    // ============================================================
+    function checkRepetitions() {
+        const fasila = document.getElementById('f_num').value.trim();
+
+        // إزالة التظليل دائماً أولاً
+        document.querySelectorAll('select.repeated-warning').forEach(s => {
+            s.classList.remove('repeated-warning');
+            if(s._btn) s._btn.classList.remove('repeated-warning');
+        });
+
+        if(!fasila) { hideWarnings(); return; }
+
+        const archive = getArchive();
+        // آخر سجل لنفس الفصيلة (أحدث مناوبة سابقة)
+        const prevRecord = archive.find(r => r.fasila === fasila);
+        if(!prevRecord || !prevRecord.snapshot || !prevRecord.snapshot.assignments) {
+            hideWarnings(); return;
+        }
+
+        const prevAssignments = prevRecord.snapshot.assignments;
+        const currSnap = captureCurrentSnapshot();
+        const currAssignments = currSnap.assignments;
+
+        // بناء فهارس سريعة للسجل السابق
+        // { agent → Set(vehicle) }، { agent → Set(task) }، { agent → Set(guardSlot) }
+        const prevByAgent = {};
+        prevAssignments.forEach(a => {
+            if(!prevByAgent[a.agent]) prevByAgent[a.agent] = { vehicles: new Set(), tasks: new Set(), guardSlots: new Set() };
+            if(a.vehicle)   prevByAgent[a.agent].vehicles.add(a.vehicle);
+            if(a.task)      prevByAgent[a.agent].tasks.add(a.task);
+            if(a.guardSlot) prevByAgent[a.agent].guardSlots.add(a.guardSlot);
+        });
+
+        // فهرس سريع للسجل الحالي: نحتاجه لتظليل الـ select الصحيح
+        // نبني: { agent+vehicle+task+guardSlot → [select elements] }
+        const warnings = []; // { type, agent, detail, prevDate }
+        const warnedAgents = new Set(); // لتجنب تكرار نفس التنبيه
+        const selectsToWarn = []; // عناصر select تحتاج تظليل
+
+        currAssignments.forEach(curr => {
+            const prev = prevByAgent[curr.agent];
+            if(!prev) return;
+
+            const key = (type) => curr.agent + '|' + type;
+
+            // نوع 1: نفس المركبة
+            if(curr.vehicle && curr.vehicle !== 'حراسة' && prev.vehicles.has(curr.vehicle)) {
+                if(!warnedAgents.has(key('v'+curr.vehicle))) {
+                    warnings.push({
+                        type: 'vehicle',
+                        icon: '🚑',
+                        agent: curr.agent,
+                        detail: 'نفس المركبة: ' + curr.vehicle,
+                        prevDate: prevRecord.date
+                    });
+                    warnedAgents.add(key('v'+curr.vehicle));
+                }
+            }
+
+            // نوع 2: نفس المهمة (ر.العدد، الفرقة، السائق، خدمات)
+            if(curr.task && curr.task !== 'حراسة' && curr.task !== 'خدمات_عناوين' && prev.tasks.has(curr.task)) {
+                if(!warnedAgents.has(key('t'+curr.task))) {
+                    warnings.push({
+                        type: 'task',
+                        icon: '📋',
+                        agent: curr.agent,
+                        detail: 'نفس المهمة: ' + curr.task,
+                        prevDate: prevRecord.date
+                    });
+                    warnedAgents.add(key('t'+curr.task));
+                }
+            }
+
+            // نوع 3: نفس وقت الحراسة
+            if(curr.guardSlot && prev.guardSlots.has(curr.guardSlot)) {
+                if(!warnedAgents.has(key('g'+curr.guardSlot))) {
+                    warnings.push({
+                        type: 'guard',
+                        icon: '🕐',
+                        agent: curr.agent,
+                        detail: 'نفس وقت الحراسة: ' + curr.guardSlot,
+                        prevDate: prevRecord.date
+                    });
+                    warnedAgents.add(key('g'+curr.guardSlot));
+                }
+            }
+        });
+
+        // تظليل الـ selects التي تحتوي على أعوان محذّر عنهم
+        const warnedAgentNames = new Set(warnings.map(w => w.agent));
+        document.querySelectorAll('select.name-select').forEach(sel => {
+            if(sel.value && warnedAgentNames.has(sel.value.trim())) {
+                sel.classList.add('repeated-warning');
+                if(sel._btn) sel._btn.classList.add('repeated-warning');
+            }
+        });
+
+        showWarnings(warnings, fasila);
+    }
+
+    function showWarnings(warnings, fasila) {
+        const panel = document.getElementById('warningPanel');
+        const list  = document.getElementById('warningList');
+        if(!warnings.length) { panel.style.display = 'none'; return; }
+        panel.style.display = 'block';
+
+        // تجميع التنبيهات حسب النوع
+        const byType = { vehicle: [], task: [], guard: [] };
+        warnings.forEach(w => byType[w.type].push(w));
+
+        let html = '';
+
+        if(byType.vehicle.length) {
+            html += '<div class="warn-group-title">🚑 تكرار المركبة / سيارة الإسعاف</div>';
+            byType.vehicle.forEach(w => {
+                html += '<div class="warning-item">' +
+                    '<span class="warn-agent">' + w.agent + '</span> — ' +
+                    w.detail + ' — <em>من مناوبة: ' + w.prevDate + '</em></div>';
+            });
+        }
+        if(byType.task.length) {
+            html += '<div class="warn-group-title">📋 تكرار المهمة</div>';
+            byType.task.forEach(w => {
+                html += '<div class="warning-item">' +
+                    '<span class="warn-agent">' + w.agent + '</span> — ' +
+                    w.detail + ' — <em>من مناوبة: ' + w.prevDate + '</em></div>';
+            });
+        }
+        if(byType.guard.length) {
+            html += '<div class="warn-group-title">🕐 تكرار وقت الحراسة</div>';
+            byType.guard.forEach(w => {
+                html += '<div class="warning-item">' +
+                    '<span class="warn-agent">' + w.agent + '</span> — ' +
+                    w.detail + ' — <em>من مناوبة: ' + w.prevDate + '</em></div>';
+            });
+        }
+
+        list.innerHTML = html;
+    }
+
+    function hideWarnings() {
+        document.getElementById('warningPanel').style.display = 'none';
+        document.getElementById('warningList').innerHTML = '';
+        document.querySelectorAll('select.repeated-warning').forEach(s => s.classList.remove('repeated-warning'));
+    }</script>
+
+
+    <script>
+      // Inline Service Worker via Blob
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const swCode = `// Service Worker - ورقة المهام الحماية المدنية ميلة
+const CACHE_NAME = 'waraqat-v1';
+const FILES_TO_CACHE = [
+  './',
+  './index.html',
+  './manifest.json',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png'
+];
+
+// تثبيت: تخزين الملفات مسبقاً
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
+  );
+  self.skipWaiting();
+});
+
+// تفعيل: حذف الكاش القديم
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
+
+// اعتراض الطلبات: أولوية للكاش (offline-first)
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request).catch(() => caches.match('./index.html'));
+    })
+  );
+});
+`;
+          const swBlob = new Blob([swCode], {type: 'application/javascript'});
+          const swURL  = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swURL)
+            .then(() => console.log('SW OK'))
+            .catch(e => console.log('SW err:', e));
+        });
+      }
+    </script>
+</body>
+</html>
