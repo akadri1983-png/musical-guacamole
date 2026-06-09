@@ -1,0 +1,145 @@
+2336
+2337
+2338
+2339
+2340
+2341
+2342
+2343
+2344
+2345
+2346
+2347
+2348
+2349
+2350
+2351
+2352
+2353
+2354
+2355
+2356
+2357
+2358
+2359
+2360
+2361
+2362
+2363
+2364
+2365
+2366
+2367
+2368
+2369
+2370
+2371
+2372
+2373
+2374
+2375
+2376
+2377
+2378
+2379
+2380
+2381
+2382
+2383
+2384
+2385
+2386
+2387
+2388
+2389
+2390
+2391
+2392
+2393
+2394
+2395
+2396
+2397
+2398
+2399
+2400
+2401
+2402
+2403
+2404
+2405
+2406
+2407
+    <meta charset="UََِTF-8">
+        if(byType.guard.length) {
+            html += '<div class="warn-group-title">🕐 تكرار وقت الحراسة</div>';
+            byType.guard.forEach(w => {
+                html += '<div class="warning-item">' +
+                    '<span class="warn-agent">' + w.agent + '</span> — ' +
+                    w.detail + ' — <em>من مناوبة: ' + w.prevDate + '</em></div>';
+            });
+        }
+
+        list.innerHTML = html;
+    }
+
+    function hideWarnings() {
+        document.getElementById('warningPanel').style.display = 'none';
+        document.getElementById('warningList').innerHTML = '';
+        document.querySelectorAll('select.repeated-warning').forEach(s => s.classList.remove('repeated-warning'));
+    }</script>
+
+
+    <script>
+      // Inline Service Worker via Blob
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const swCode = `// Service Worker - ورقة المهام الحماية المدنية ميلة
+const CACHE_NAME = 'waraqat-v1';
+const FILES_TO_CACHE = [
+  './',
+  './index.html',
+  './manifest.json',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png'
+];
+
+// تثبيت: تخزين الملفات مسبقاً
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
+  );
+  self.skipWaiting();
+});
+
+// تفعيل: حذف الكاش القديم
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
+
+// اعتراض الطلبات: أولوية للكاش (offline-first)
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request).catch(() => caches.match('./index.html'));
+    })
+  );
+});
+`;
+          const swBlob = new Blob([swCode], {type: 'application/javascript'});
+          const swURL  = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swURL)
+            .then(() => console.log('SW OK'))
+            .catch(e => console.log('SW err:', e));
+        });
+      }
+    </script>
+</body>
+</html>
